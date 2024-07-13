@@ -1,7 +1,7 @@
 import { getRengasByDate } from "../../lib/data";
 import Card from "../card";
 
-export default function RankingCards() {
+export default function NewCards() {
     const rengas = getRengasByDate()
     return (
         <div>

@@ -1,7 +1,6 @@
 //カードリストを表示するコンポーネント
 
 import { Renga } from "../lib/definitions";
-import {renga} from "../lib/placeholder";
 import Card from "./card";
 
 export default function CardList({rengas}: {rengas: Renga[]}) {

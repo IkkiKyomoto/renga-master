@@ -24,11 +24,10 @@ export default function Header() {
           <li>
             <Link href="/instruction">遊び方</Link>
           </li>
-          {/* {session ? <li><LogoutButton /></li> : <div>
-                    <li><LoginButton /></li>
-                    <li><RegisterButton /></li>
-                </div>
-                } */}
+          
+          <li><LoginButton /></li>
+          <li><RegisterButton /></li>
+
         </ul>
       </nav>
     </header>

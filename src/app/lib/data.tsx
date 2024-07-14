@@ -1,4 +1,5 @@
 import { renga } from "./placeholder";
+import { User } from "./definitions";
 
 export function getRengasByDate() {
   const rengas = [];

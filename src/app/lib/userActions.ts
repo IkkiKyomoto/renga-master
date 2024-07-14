@@ -38,10 +38,11 @@ export type State = {
 export async function createUser(formData: FormData) {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+    const passwordConfirm = formData.get("passwordConfirm") as string;
     const validateFields = FormScheme.safeParse({
         email,
         password,
-        passwordConfirm: formData.get("passwordConfirm") as string,
+        passwordConfirm,
     });
     if (!validateFields.success) {
         return {
@@ -53,7 +54,7 @@ export async function createUser(formData: FormData) {
 
     try {
         await sql`
-        INSEERT INTO users (email, password)
+        INSEERT INTO User (email, password)
         VALUES (${data.email}, ${data.password})
         `
         redirect('/login')

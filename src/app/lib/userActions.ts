@@ -7,7 +7,7 @@ import { signIn } from "@/auth"
 import AuthError from "next-auth";
 import bcypt from 'bcrypt';
 import prisma from "@/app/lib/prisma";
-import passWordHash from "@/app/lib/hash";
+import {passWordHash} from "@/app/lib/hash";
 
 export async function authenticate(
   prevState: string | undefined,

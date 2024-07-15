@@ -1,17 +1,17 @@
 import GoogleProvider from "next-auth/providers/google";
-import { NextAuthOptions } from "next-auth";
+import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
-import bcrypt from 'bcrypt';
 import {User} from '@/app/lib/definitions';
 import prisma from '@/app/lib/prisma';
+import {passwordMatch} from '@/app/lib/hash';
 
 type ClientType = {
     clientId: string;
     clientSecret: string;
   };
 
-export const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthConfig = {
     pages: {
       signIn: "/login",
       // error: "/login",
@@ -34,11 +34,11 @@ export const authOptions: NextAuthOptions = {
 
 
           if (parsedCredentials.success) {
-            let email
-            let password
+            let email : string
+            let password : string
             if (credentials) {
-              email = credentials.email
-              password = credentials.password
+              email = credentials.email as string
+              password = credentials.password as string
             } else {
               return null
             }
@@ -61,9 +61,10 @@ export const authOptions: NextAuthOptions = {
               // const user = await getUser(email);
   
               if (!user) return null;
-              const passwordsMatch = await bcrypt.compare(password, user.password);
-              console.log(passwordsMatch)
-              if (passwordsMatch) return user;
+              const isPasswordMatched = passwordMatch(password, user.password)
+              //const passwordsMatch = await bcrypt.compare(password, user.password);
+              console.log(isPasswordMatched)
+              if (isPasswordMatched) return user;
           }
           console.log('Invalid credentials');
           return null;
@@ -86,15 +87,15 @@ export const authOptions: NextAuthOptions = {
         }
         return token
       },
-      session: ({session, token}) => {
-        return {
-          ...session,
-          user: {
-            email: token.email,
-            id: token.id,
-          }
-        }
-      }
+      // session: ({session, token}) => {
+      //   return {
+      //     ...session,
+      //     user: {
+      //       email: token.email,
+      //       id: token.id,
+      //     }
+      //   }
+      // }
     },
     
   };

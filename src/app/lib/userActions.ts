@@ -1,11 +1,38 @@
 "use server"
 
 import { sql } from "@vercel/postgres";
-import { error } from "console";
-import Email from "next-auth/providers/email";
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { custom, z } from "zod";
+import { z } from "zod";
+import { signIn } from "@/auth"
+import AuthError from "next-auth";
+import bcypt from 'bcrypt';
+import prisma from "@/app/lib/prisma";
+import passWordHash from "@/app/lib/hash";
+
+export async function authenticate(
+  prevState: string | undefined,
+  formData: FormData,
+) {
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+  try {
+    await signIn('credentials',{redirect: true, email: email, password: password});
+    console.log('success');
+  } catch (error) {
+    console.log(error);
+      if (error instanceof AuthError) {
+        if (error) {
+          console.log(error);
+          return "ログインに失敗しました";
+        }
+      } else {
+        console.log(error);
+        return "ログインに失敗しました";
+        
+      }
+        
+  }
+}
 
 const FormScheme = z.object({
     email: z.string().email(),
@@ -26,16 +53,12 @@ const FormScheme = z.object({
 
 })
 
-export type State = {
-    errors?: {
-      customerId?: string[];
-      amount?: string[];
-      status?: string[];
-    };
-    message?: string | null;
-  };
 
-export async function createUser(formData: FormData) {
+   
+
+
+
+export async function createUser( prevState: string | undefined,formData: FormData) {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const passwordConfirm = formData.get("passwordConfirm") as string;
@@ -45,22 +68,23 @@ export async function createUser(formData: FormData) {
         passwordConfirm,
     });
     if (!validateFields.success) {
-        return {
-            errors: validateFields.error.flatten().fieldErrors,
-            message: "入力内容に誤りがあります",
-        }
+        return validateFields.error.errors[0].message;  
     }
+
     const data = validateFields.data;
 
     try {
-        await sql`
-        INSEERT INTO User (email, password)
-        VALUES (${data.email}, ${data.password})
-        `
-        redirect('/login')
+        const hashedPassword = passWordHash(data.password);
+        const User = await prisma.user.create({
+            data: {
+                email: data.email,
+                password: hashedPassword,
+            }
+        })
+        console.log(User);
+        //redirect('/login')
     } catch (error) {
-        return {
-            message: '登録に失敗しました',
-        }
+        console.log(error);
+        return "登録に失敗しました";
     }
 }

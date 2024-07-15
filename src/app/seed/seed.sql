@@ -47,4 +47,3 @@ create table Renga (
     foreign key (hokkuId) references Hokku(id)
     foreign key (tsukekuId) references Tsukeku(id)
     );
-)

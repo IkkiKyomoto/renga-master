@@ -1,4 +1,11 @@
-export { default } from "next-auth/middleware";
+import NextAuth from "next-auth";
+import { authOptions } from "./auth.config";
+
+export default NextAuth(authOptions).auth
+
+// export function middleware(request: NextRequest) {
+//   return NextResponse.redirect(new URL("/login", request.url));
+// }
 
 export const config = {
   matcher: ["/hokku/:path*", "/tsukeku/:path*", "/mypage/:path*"],

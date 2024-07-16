@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && prisma generate && prisma db push && ",
+    "build": "next build",
+    "postinstall": "prisma generate",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write .",
-    "custom-build" : "prisma generate && prisma db push && next build"
+    "format": "prettier --write ."
   },
   "type": "module",
   "dependencies": {

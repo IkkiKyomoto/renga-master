@@ -1,7 +1,5 @@
 import { renga } from "./placeholder";
-import { User } from "./definitions";
-import { signIn } from "@/auth";
-import  AuthError  from "next-auth";
+
 
 export function getRengasByDate() {
   const rengas = [];

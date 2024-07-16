@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
-import { authOptions } from "./auth.config";
+import { authConfig } from "./auth.config";
 import { NextRequest, NextResponse } from "next/server";
 
-export default NextAuth(authOptions).auth
+export default NextAuth(authConfig).auth
 
 export function middleware(request: NextRequest) {
   return NextResponse.redirect(new URL("/login", request.url));

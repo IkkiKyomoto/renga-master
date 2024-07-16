@@ -1,7 +1,6 @@
 "use server"
 
 
-import { redirect } from "next/navigation";
 import { z } from "zod";
 import { signIn } from "@/auth"
 import AuthError from "next-auth";
@@ -73,7 +72,8 @@ export async function createUser( prevState: string | undefined,formData: FormDa
 
     try {
         const hashedPassword = passWordHash(data.password);
-        const User = await prisma.user.create({
+        
+        const user = await prisma.user.create({
             data: {
                 email: data.email,
                 password: hashedPassword,

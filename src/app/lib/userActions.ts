@@ -18,7 +18,6 @@ export async function authenticate(
     await signIn('credentials',{redirect: true, email: email, password: password});
     console.log('success');
   } catch (error) {
-    console.log(error);
       if (error instanceof AuthError) {
         if (error) {
           console.log(error);
@@ -80,7 +79,6 @@ export async function createUser( prevState: string | undefined,formData: FormDa
                 password: hashedPassword,
             }
         })
-        console.log(User);
         //redirect('/login')
     } catch (error) {
         console.log(error);

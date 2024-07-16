@@ -1,11 +1,10 @@
 "use server"
 
-import { sql } from "@vercel/postgres";
+
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { signIn } from "@/auth"
 import AuthError from "next-auth";
-import bcypt from 'bcrypt';
 import prisma from "@/app/lib/prisma";
 import {passWordHash} from "@/app/lib/hash";
 

@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "custom-build" : "prisma generate && prisma db push && next build",
+    "custom-build" : "prisma generate && prisma db push && next build"
   },
   "type": "module",
   "dependencies": {

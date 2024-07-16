@@ -1,9 +1,10 @@
-import { LoginButton, LogoutButton, RegisterButton } from "./button";
+
+
 import Link from "next/link";
-import { useSession, signIn, signOut } from "next-auth/react";
+import AuthButtons from "./AuthButtons";
+import { Suspense } from "react";
 
 export default function Header() {
-  //const {data: session} = useSession()
   return (
     <header className="flex justify-center gap-6 mt-6">
       <h1 className="text-2xl ">連歌ますたぁ</h1>
@@ -24,10 +25,17 @@ export default function Header() {
           <li>
             <Link href="/instruction">遊び方</Link>
           </li>
-          
-          <li><LoginButton /></li>
-          <li><RegisterButton /></li>
+          <li>
 
+          <AuthButtons/>
+
+
+          </li>
+
+
+
+
+  
         </ul>
       </nav>
     </header>

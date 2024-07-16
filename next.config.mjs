@@ -2,6 +2,7 @@
 const nextConfig = {
     experimental: {
         externalDir: true,
+        ppr: true,
     },
     // webpack: (config, { isServer }) => {
     //     if (!isServer) {

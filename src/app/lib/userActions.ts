@@ -3,32 +3,23 @@
 
 import { z } from "zod";
 import { signIn } from "@/auth"
-import AuthError from "next-auth";
 import prisma from "@/app/lib/prisma";
 import {passWordHash} from "@/app/lib/hash";
+import { redirect } from "next/navigation";
 
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
 ) {
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
+  const email = formData.get('email')
+  const password = formData.get('password')
   try {
-    await signIn('credentials',{redirect: true, email: email, password: password});
-    console.log('success');
-  } catch (error) {
-      if (error instanceof AuthError) {
-        if (error) {
-          console.log(error);
-          return "ログインに失敗しました";
-        }
-      } else {
-        console.log(error);
-        return "ログインに失敗しました";
-        
-      }
-        
+    await signIn('credentials',{redirect :false,email: email, password: password});
+  } catch (e) {
+    return '認証に失敗しました'
   }
+  redirect('/')
+  //console.log(res)
 }
 
 const FormScheme = z.object({

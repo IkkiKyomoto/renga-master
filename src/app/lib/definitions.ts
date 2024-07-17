@@ -10,11 +10,14 @@ export type User = {
 
 export type Hokku = {
   id: string;
-  user_id: string;
-  shoku: string;
+  description: string | null;
+  userId: string;
+  ikku: string;
   niku: string;
   sanku: string;
-  createdAt: string;
+  completed: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type Tsukeku = {

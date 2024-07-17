@@ -61,3 +61,7 @@ export async function createHokku(
     }
     redirect('/')
 }
+
+export async function createTsukeku(shiku: string, goku: string) {
+    
+}

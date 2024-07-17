@@ -23,6 +23,7 @@
     "prisma": "^5.16.2",
     "react": "19.0.0-rc-df5f2736-20240712",
     "react-dom": "19.0.0-rc-df5f2736-20240712",
+    "react-toastify": "^10.0.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {

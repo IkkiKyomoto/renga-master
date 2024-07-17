@@ -6,24 +6,7 @@ import prisma from "@/app/lib/prisma";
 import { passWordHash } from "@/app/lib/hash";
 import { redirect } from "next/navigation";
 
-export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData,
-) {
-  const email = formData.get("email");
-  const password = formData.get("password");
-  try {
-    await signIn("credentials", {
-      redirect: false,
-      email: email,
-      password: password,
-    });
-  } catch (e) {
-    return "認証に失敗しました";
-  }
-  redirect("/");
-  //console.log(res)
-}
+
 
 const FormScheme = z
   .object({
@@ -45,13 +28,27 @@ const FormScheme = z
     }
   });
 
+  export async function authenticate(
+    email: string,
+    password: string,
+  ) {
+    try {
+      await signIn("credentials", {
+        redirect: false,
+        email: email,
+        password: password,
+      });
+    } catch (e) {
+      return "ログインに失敗しました";
+    }
+    //console.log(res)
+  }
+
 export async function createUser(
-  prevState: string | undefined,
-  formData: FormData,
+  email: string,
+  password: string,
+  passwordConfirm: string
 ) {
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-  const passwordConfirm = formData.get("passwordConfirm") as string;
   const validateFields = FormScheme.safeParse({
     email,
     password,
@@ -77,4 +74,5 @@ export async function createUser(
     console.log(error);
     return "登録に失敗しました";
   }
+  redirect("/login");
 }

@@ -1,16 +1,29 @@
 "use client";
+import { useState } from "react";
 
-import { useSearchParams } from "next/navigation";
-import { useActionState } from "react";
 import { authenticate } from "@/app/lib/userActions";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
+  const router = useRouter();
   // const searchParams = useSearchParams();
   // const callbackUrl = searchParams.get("callbackUrl") || "/profile";
-  const [errorMessage, formAction] = useActionState(authenticate, undefined);
+  const [errorMessage, setErrorMessage] = useState<string|undefined>()
+  async function handleSubmit (event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const message = await authenticate(form.email.value, form.password.value);
+
+    if (message === undefined) {
+      toast.success('ログインしました');
+      router.push('/')
+    }
+    setErrorMessage(message);
+  }
   return (
     <div>
-      <form action={formAction}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="email">メールアドレス</label>
         <input type="email" name="email" id="email" />
         <label htmlFor="password">パスワード</label>

@@ -7,13 +7,12 @@ import type { NextAuthConfig } from "next-auth";
 
 export const authConfig = {
   pages: {
-    signIn: '/login',
-    newUser: '/register',
+    signIn: "/login",
+    newUser: "/register",
   },
   // callbacks: {
   //   authorized({ auth, request: { nextUrl } }) {
 
-      
   //     const isLoggedIn = !!auth?.user;
   //     const isOnDashboard = nextUrl.pathname
   //     if (isOnDashboard) {
@@ -45,7 +44,6 @@ export const authConfig = {
 //           .object({ email: z.string().email(), password: z.string().min(6) })
 //           .safeParse(credentials);
 
-
 //           if (parsedCredentials.success) {
 //             let email : string
 //             let password : string
@@ -60,7 +58,7 @@ export const authConfig = {
 //                 email: email
 //               }
 //             }
-            
+
 //             )
 //             const user = {
 //               id: data?.id as string,
@@ -72,7 +70,7 @@ export const authConfig = {
 //             } as User
 //               console.log('Credentials')
 //               // const user = await getUser(email);
-  
+
 //               if (!user) return null;
 //               const isPasswordMatched = passwordMatch(password, user.password)
 //               //const passwordsMatch = await bcrypt.compare(password, user.password);
@@ -110,5 +108,5 @@ export const authConfig = {
 //       //   }
 //       // }
 //     },
-    
+
 //   };

@@ -19,11 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <SessionProvider>
-        <div>
-        <Header />
-        {children}
-        </div>
+        <SessionProvider >
+          <div>
+            <Header />
+            {children}
+          </div>
         </SessionProvider>
       </body>
     </html>

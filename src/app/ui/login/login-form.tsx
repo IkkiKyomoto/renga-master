@@ -1,12 +1,10 @@
-'use client'
+"use client";
 
 import { useSearchParams } from "next/navigation";
-import { useActionState } from "react"
+import { useActionState } from "react";
 import { authenticate } from "@/app/lib/userActions";
 
 export default function LoginForm() {
-
-
   // const searchParams = useSearchParams();
   // const callbackUrl = searchParams.get("callbackUrl") || "/profile";
   const [errorMessage, formAction] = useActionState(authenticate, undefined);

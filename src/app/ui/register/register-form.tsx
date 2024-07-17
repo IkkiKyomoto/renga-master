@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useActionState } from 'react';
-import { createUser } from '@/app/lib/userActions';
+import { useActionState } from "react";
+import { createUser } from "@/app/lib/userActions";
 
 export default function RegisterForm() {
   const [errorMessage, formAction] = useActionState(createUser, undefined);

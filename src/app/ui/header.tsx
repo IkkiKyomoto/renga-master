@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import AuthButtons from "./AuthButtons";
-import { Suspense } from "react";
+import { auth } from '@/auth'
 
-export default function Header() {
+export default async function Header() {
+  const session = await auth()
+  console.log(session)
   return (
     <header className="flex justify-center gap-6 mt-6">
       <h1 className="text-2xl ">連歌ますたぁ</h1>
@@ -26,16 +28,8 @@ export default function Header() {
             <Link href="/instruction">遊び方</Link>
           </li>
           <li>
-
-          <AuthButtons/>
-
-
+            <AuthButtons session={session} />
           </li>
-
-
-
-
-  
         </ul>
       </nav>
     </header>

@@ -101,6 +101,7 @@ model Hokku {
   sanku String
   tsukeku Tsukeku[]
   renga Renga[]
+  completed Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

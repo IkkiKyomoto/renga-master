@@ -1,3 +1,5 @@
+'use client'
+
 import { createTsukeku } from '@/app/lib/rengaActions'
 import React from 'react'
 import { useState } from 'react'

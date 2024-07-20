@@ -18,7 +18,7 @@ export default function LoginForm() {
     if (message === undefined) {
       toast.success("ログインしました");
     }
-    setErrorMessage(message);
+    //setErrorMessage(message);
   }
   return (
     <div>
@@ -30,7 +30,8 @@ export default function LoginForm() {
         <button type="submit">ログイン</button>
         {/* <button onClick={() => signIn('google', {callbackUrl})}>Google</button> */}
       </form>
-      {errorMessage && <p>{errorMessage}</p>}
+      {//errorMessage && <p>{errorMessage}</p>
+      }
     </div>
   );
 }

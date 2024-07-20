@@ -81,9 +81,9 @@ export const { auth, signIn, signOut } = NextAuth({
       }
       return session;
     },
-    async redirect({ url, baseUrl }) {
-      if (url.startsWith("/")) return `${baseUrl}${url}`;
-      else return `${baseUrl}/`;
-    },
+    // async redirect({ url, baseUrl }) {
+    //   if (url.startsWith("/")) return `${baseUrl}${url}`;
+    //   else return `${baseUrl}/`;
+    // },
   },
 });

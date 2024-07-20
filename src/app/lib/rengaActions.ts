@@ -142,3 +142,25 @@ export async function createRenga(hokkuId: string, tsukekuId: string) {
     throw new Error("連歌の作成に失敗しました");
   }
 }
+
+export async function createLike(userId: string, rengaId: string) {
+  try {
+    await prisma.like.create({
+      data: {
+        user: {
+          connect: {
+            id: userId,
+          },
+        },
+        renga: {
+          connect: {
+            id: rengaId,
+          },
+        },
+      },
+    });
+  } catch (error: unknown) {
+    console.error(error);
+    throw new Error("良の送信に失敗しました");
+  }
+}

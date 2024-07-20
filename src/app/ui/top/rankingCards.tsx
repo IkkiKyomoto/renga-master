@@ -1,8 +1,9 @@
 "use server";
 
-import { Renga } from "@prisma/client";
+import { Renga } from "@/app/lib/definitions";
 import { getRengasByGoodForWeek } from "@/app/lib/data";
 import Card from "../card";
+import { auth } from "@/auth";
 
 export default async function RankingCards() {
   const num = 12;
@@ -14,6 +15,7 @@ export default async function RankingCards() {
     console.log(error);
     errorMessage = error.message;
   }
+  const session = await auth()
 
   return (
     <div>
@@ -25,12 +27,18 @@ export default async function RankingCards() {
           const shimonoku = ((renga.tsukeku?.yonku as string) +
             renga.tsukeku?.goku) as string;
           const likeNum = renga.likes?.length;
+          var isLiked = false
+          renga.likes.map((like)=> {
+            isLiked = like.userId === session?.user?.id
+          })
           return (
             <Card
               key={i}
               kaminoku={kaminoku}
               shimonoku={shimonoku}
               likeNum={likeNum}
+              rengaId={renga.id}
+              isLiked= {isLiked}
             />
           );
         })}

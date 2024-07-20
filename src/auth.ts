@@ -44,7 +44,7 @@ export const { auth, signIn, signOut } = NextAuth({
             return null;
           }
           const user = await getUser(email);
-          console.log(user)
+
           //console.log('Credentials')
           // const user = await getUser(email);
 
@@ -52,6 +52,7 @@ export const { auth, signIn, signOut } = NextAuth({
             return null;
           }
           const isPasswordMatched = passwordMatch(password, user.password as string);
+          console.log(isPasswordMatched)
           //const passwordsMatch = await bcrypt.compare(password, user.password);
           if (isPasswordMatched) {
             return user;
@@ -67,7 +68,7 @@ export const { auth, signIn, signOut } = NextAuth({
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       if (user) {
         token.name = user.name;
         token.sub = user.id;

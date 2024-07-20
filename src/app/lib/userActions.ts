@@ -32,15 +32,15 @@ const FormScheme = z
   });
 
 export async function authenticate(email: string, password: string) {
-  try {
+  // try {
     await signIn("credentials", {
       redirect: false,
       email: email,
       password: password,
     });
-  } catch (e) {
-    return "ログインに失敗しました";
-  }
+  // } catch (e) {
+  //   return "ログインに失敗しました";
+  // }
   redirect("/");
 }
 

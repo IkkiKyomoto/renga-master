@@ -5,7 +5,8 @@ export type User = {
   password: string;
   createdAt: Date;
   updatedAt: Date;
-  image: string;
+  image: string | null;
+  likes: Like[];
 };
 
 export type Hokku = {
@@ -18,15 +19,18 @@ export type Hokku = {
   completed: boolean;
   createdAt: Date;
   updatedAt: Date;
+  tsukeku?: Tsukeku[];
+  tsukekuNum?: number;
 };
 
 export type Tsukeku = {
   id: string;
-  user_id: string;
-  hokku_id: string;
-  shiku: string;
+  userId: string;
+  hokkuId: string;
+  yonku: string;
   goku: string;
-  createdAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type Renga = {
@@ -44,9 +48,10 @@ export type Renga = {
   good: number;
 };
 
-export type Good = {
+export type Like = {
   id: string;
-  user_id: string;
-  renga_id: string;
-  createdAt: string;
+  userId: string;
+  rengaId: string;
+  createdAt: Date;
+  updatedAt: Date;
 };

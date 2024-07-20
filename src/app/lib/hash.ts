@@ -31,6 +31,5 @@ export function passwordMatch(
   } else {
     res = false;
   }
-  console.log(hashedPassword, hashedCorrectPassword, res);
   return res;
 }

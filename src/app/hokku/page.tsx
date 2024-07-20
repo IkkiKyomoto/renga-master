@@ -6,7 +6,7 @@ export default function Page() {
     <div>
       <h1>発句する</h1>
       <div>
-        <HokkuForm/>
+        <HokkuForm />
       </div>
     </div>
   );

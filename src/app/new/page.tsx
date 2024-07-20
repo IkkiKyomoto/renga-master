@@ -1,8 +1,7 @@
-'use client'
+"use client";
 
 import React from "react";
 import RegisterForm from "@/app/ui/register/register-form";
-
 
 export default function Page() {
   return (

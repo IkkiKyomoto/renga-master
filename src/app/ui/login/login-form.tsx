@@ -9,15 +9,14 @@ export default function LoginForm() {
   const router = useRouter();
   // const searchParams = useSearchParams();
   // const callbackUrl = searchParams.get("callbackUrl") || "/profile";
-  const [errorMessage, setErrorMessage] = useState<string|undefined>()
-  async function handleSubmit (event: React.FormEvent<HTMLFormElement>) {
+  const [errorMessage, setErrorMessage] = useState<string | undefined>();
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const message = await authenticate(form.email.value, form.password.value);
 
     if (message === undefined) {
-      toast.success('ログインしました');
-      router.push('/')
+      toast.success("ログインしました");
     }
     setErrorMessage(message);
   }

@@ -1,12 +1,13 @@
+"use server";
 
+import { auth } from "@/auth";
 
 import Link from "next/link";
 import AuthButtons from "./AuthButtons";
-import { auth } from '@/auth'
 
+import { useSession } from "next-auth/react";
 export default async function Header() {
-  const session = await auth()
-  console.log(session)
+  const session = await auth();
   return (
     <header className="flex justify-center gap-6 mt-6">
       <h1 className="text-2xl ">連歌ますたぁ</h1>
@@ -22,13 +23,13 @@ export default async function Header() {
             <Link href="/tsukeku">付句する</Link>
           </li>
           <li>
-            <Link href="/mypage">マイ連歌</Link>
+            <Link href={`/my-page/${session?.user?.id}`}>マイページ</Link>
           </li>
           <li>
             <Link href="/instruction">遊び方</Link>
           </li>
           <li>
-            <AuthButtons session={session} />
+            <AuthButtons />
           </li>
         </ul>
       </nav>

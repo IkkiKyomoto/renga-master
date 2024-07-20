@@ -1,24 +1,26 @@
-
+import { auth } from "@/auth";
 
 import { LoginButton } from "./buttons/loginButton";
 import { LogoutButton } from "./buttons/logoutButton";
 import { RegisterButton } from "./buttons/registerButton";
+import { Suspense } from "react";
 
-export default function AuthButtons({session} : {session: any}) {
+export default async function AuthButtons() {
+  const session = await auth();
   return session ? (
     <div>
-      <li>
+      <Suspense fallback={<p>ロード中</p>}>
         <LogoutButton />
-      </li>
+      </Suspense>
     </div>
   ) : (
-    <div className="flex gap-3">
+    <ul className="flex gap-3">
       <li>
         <LoginButton />
       </li>
       <li>
         <RegisterButton />
       </li>
-    </div>
+    </ul>
   );
 }

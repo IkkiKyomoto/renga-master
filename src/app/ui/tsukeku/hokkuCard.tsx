@@ -1,17 +1,29 @@
-import prisma from '@/app/lib/prisma';
-import { Hokku } from '@/app/lib/definitions';
-
-
-export default function HokkuCard({hokku}: {hokku: Hokku}) {
+export default function HokkuCard({
+  ikku,
+  niku,
+  sanku,
+  description,
+  isPosted,
+  isMine,
+}: {
+  ikku: string;
+  niku: string;
+  sanku: string;
+  description: string | null;
+  isPosted?: boolean;
+  isMine?: boolean;
+}) {
   return (
     <div>
-      <h1>{hokku.ikku}</h1>
-      <p>{hokku.niku}</p>
-      <p>{hokku.sanku}</p>
-      <p>{hokku.description}</p>
+      <div>
+        <h1>{ikku}</h1>
+        <p>{niku}</p>
+        <p>{sanku}</p>
+        <p>{description}</p>
+      </div>
+      {isPosted && <p>投稿済</p>}
+      {isMine && <p>マイ発句</p>}
+      <p></p>
     </div>
-  )
-
+  );
 }
-
-

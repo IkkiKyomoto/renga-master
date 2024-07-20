@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import { createRenga } from "@/app/lib/rengaActions";
 import { useRouter } from "next/navigation";
 
-export default function rengaCompleteForm({
+export default function RengaCompleteForm({
   tsukekus,
   hokkuId,
 }: {

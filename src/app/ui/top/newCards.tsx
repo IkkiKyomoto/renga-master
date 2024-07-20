@@ -2,8 +2,8 @@
 
 import { Renga } from "@/app/lib/definitions";
 import { getRengasByDate } from "../../lib/data";
+import { auth } from "@/auth";
 import Card from "../card";
-import { useState } from "react";
 
 export default async function NewCards() {
   const num = 12;
@@ -14,6 +14,7 @@ export default async function NewCards() {
   } catch (error: any) {
     errorMessage = error.message;
   }
+  const session = await auth();
 
   return (
     <div>
@@ -25,12 +26,18 @@ export default async function NewCards() {
           const shimonoku = ((renga.tsukeku?.yonku as string) +
             renga.tsukeku?.goku) as string;
           const likeNum = renga.likes?.length;
+          var isLiked = false;
+          renga.likes.map((like)=> {
+            isLiked = like.userId === session?.user?.id
+          })
           return (
             <Card
               key={i}
               kaminoku={kaminoku}
               shimonoku={shimonoku}
               likeNum={likeNum}
+              rengaId={renga.id}
+              isLiked={isLiked}
             />
           );
         })}

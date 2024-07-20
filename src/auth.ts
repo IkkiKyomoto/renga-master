@@ -31,7 +31,6 @@ export const { auth, signIn, signOut } = NextAuth({
   providers: [
     Credentials({
       async authorize(credentials) {
-        console.log(process.env.NEXTAUTH_SECRET)
         const parsedCredentials = z
           .object({ email: z.string().email(), password: z.string().min(6) })
           .safeParse(credentials);
@@ -45,6 +44,7 @@ export const { auth, signIn, signOut } = NextAuth({
             return null;
           }
           const user = await getUser(email);
+          console.log(user)
           //console.log('Credentials')
           // const user = await getUser(email);
 

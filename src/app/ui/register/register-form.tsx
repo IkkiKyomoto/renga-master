@@ -11,11 +11,12 @@ export default function RegisterForm() {
 
     const form = event.currentTarget;
     const message = await createUser(
-      form.name.value,
+      form.userName.value,
       form.email.value,
       form.password.value,
       form.passwordConfirm.value,
     );
+
     if (message === undefined) {
       toast.success("登録しました");
       router.push("/");
@@ -26,8 +27,8 @@ export default function RegisterForm() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">名前</label>
-        <input name="name" id="name" />
+        <label htmlFor="userName">名前</label>
+        <input type="text" name="userName" id="userName" />
         <label htmlFor="email">メールアドレス</label>
         <input type="email" name="email" id="email" />
         <label htmlFor="password">パスワード</label>

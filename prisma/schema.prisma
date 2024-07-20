@@ -100,14 +100,14 @@ model Hokku {
   niku String
   sanku String
   tsukeku Tsukeku[]
-  renga Renga[]
+  renga Renga?
   completed Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Tsukeku {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) 
   description     String?
   user    User     @relation(fields: [userId], references: [id])
   userId  String
@@ -115,18 +115,17 @@ model Tsukeku {
   hokkuId  String
   yonku String
   goku String
-  renga Renga[]
+  renga Renga?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Renga {
   id        String   @id @default(uuid())
-  description     String?
   hokku    Hokku     @relation(fields: [hokkuId], references: [id])
-  hokkuId  String
+  hokkuId  String @unique
   tsukeku    Tsukeku     @relation(fields: [tsukekuId], references: [id])
-  tsukekuId  String
+  tsukekuId  String @unique
   likes     Like[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

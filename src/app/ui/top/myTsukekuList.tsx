@@ -28,9 +28,7 @@ export default async function MyTsukekuList() {
         {hokkus.map((hokku, i) => {
           return (
             <li key={i}>
-              <Link
-                href={`/posted-tsukeku/${session.user?.id}?ikku=${hokku.ikku}&niku=${hokku.niku}&sanku=${hokku.sanku}&description=${hokku.description}`}
-              >
+              <Link href={`/posted-tsukeku/${hokku.id}`}>
                 <HokkuCard
                   ikku={hokku.ikku}
                   niku={hokku.niku}

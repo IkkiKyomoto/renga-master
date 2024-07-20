@@ -1,12 +1,12 @@
 export type User = {
   id: string;
   name: string;
-  email: string;
-  password: string;
-  createdAt: Date;
-  updatedAt: Date;
-  image: string | null;
-  likes: Like[];
+  email?: string;
+  password?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  image?: string | null;
+  likes?: Like[];
 };
 
 export type Hokku = {
@@ -16,9 +16,9 @@ export type Hokku = {
   ikku: string;
   niku: string;
   sanku: string;
-  completed: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  completed?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
   tsukeku?: Tsukeku[];
   tsukekuNum?: number;
 };
@@ -27,31 +27,29 @@ export type Tsukeku = {
   id: string;
   userId: string;
   hokkuId: string;
+  description: string | null;
   yonku: string;
   goku: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export type Renga = {
   id: string;
-  hokku_user_id: string;
-  tsukeku_user_id: string;
-  shoku: string;
-  niku: string;
-  sanku: string;
-  shiku: string;
-  goku: string;
-  hokku_id: string;
-  tsukeku_id: string;
-  createdAt: string;
-  good: number;
+  hokkuId: string;
+  hokku?: Hokku;
+
+  tsukekuId: string;
+  tsukeku?: Tsukeku;
+  likes: Like[];
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export type Like = {
   id: string;
   userId: string;
   rengaId: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 };

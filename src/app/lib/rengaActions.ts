@@ -111,3 +111,34 @@ export async function createTsukeku(
     return "送信に失敗しました";
   }
 }
+
+export async function createRenga(hokkuId: string, tsukekuId: string) {
+  try {
+    await prisma.$transaction(async (prisma) => {
+      await prisma.renga.create({
+        data: {
+          hokku: {
+            connect: {
+              id: hokkuId,
+            },
+          },
+          tsukeku: {
+            connect: {
+              id: tsukekuId,
+            },
+          },
+        },
+      });
+      await prisma.hokku.update({
+        where: {
+          id: hokkuId,
+        },
+        data: {
+          completed: true,
+        },
+      });
+    });
+  } catch (error: unknown) {
+    throw new Error("連歌の作成に失敗しました");
+  }
+}

@@ -27,7 +27,7 @@ export default function Card({
   const {data: session }= useSession()
   const isLikedisable = isLiked || (session === null)
   return (
-    <div className={`w-30 pt-5 lg:pr-5 md:pr-5 pr-5 pb-5 pl-5 ${color["card-border"]} ${color["card-container"]}`}>
+    <div className={styles.card}>
       <div className={styles.vertical_text}>
         <div className="font-bold">
         <p>{kaminoku}</p>

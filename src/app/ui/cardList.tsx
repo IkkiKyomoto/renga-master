@@ -26,6 +26,7 @@ export default function CardList({ rengas, session }: { rengas: Renga[]; session
             />
           );
         })}
+        {rengas.length === 0 && <p>まだありません</p>}
       </div>
   );
 }

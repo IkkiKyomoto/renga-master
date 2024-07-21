@@ -18,6 +18,12 @@ export async function getRengasByDate(perPage = 12) {
           select: {
             id: true,
             userId: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
             ikku: true,
             niku: true,
             sanku: true,
@@ -28,6 +34,12 @@ export async function getRengasByDate(perPage = 12) {
           select: {
             id: true,
             userId: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
             hokkuId: true,
             description: true,
             yonku: true,
@@ -61,6 +73,12 @@ export async function getRengasByGoodForWeek(perPage = 12) {
           select: {
             id: true,
             userId: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
             ikku: true,
             niku: true,
             sanku: true,
@@ -71,6 +89,12 @@ export async function getRengasByGoodForWeek(perPage = 12) {
           select: {
             id: true,
             userId: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
             hokkuId: true,
             description: true,
             yonku: true,
@@ -78,6 +102,12 @@ export async function getRengasByGoodForWeek(perPage = 12) {
           },
         },
       },
+      where: {
+        createdAt: {
+          gte: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
+        },
+        }
+      
     });
 
     return rengas;

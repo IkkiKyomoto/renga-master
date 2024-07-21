@@ -13,6 +13,7 @@ export type Hokku = {
   id: string;
   description: string | null;
   userId: string;
+  user?: User;
   ikku: string;
   niku: string;
   sanku: string;
@@ -26,6 +27,7 @@ export type Hokku = {
 export type Tsukeku = {
   id: string;
   userId: string;
+  user?: User;
   hokkuId: string;
   description: string | null;
   yonku: string;

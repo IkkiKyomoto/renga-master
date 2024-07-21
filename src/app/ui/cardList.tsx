@@ -1,14 +1,31 @@
 //カードリストを表示するコンポーネント
 
-// import { Renga } from "../lib/definitions";
-// import Card from "./card";
+import { Renga } from "../lib/definitions";
+import Card from "./card";
 
-// export default function CardList({ rengas }: { rengas: Renga[] }) {
-//   return (
-//     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-//       {rengas.map((renga, index) => {
-//         return <Card key={index} renga={renga} />;
-//       })}
-//     </div>
-//   );
-// }
+export default function CardList({ rengas, session }: { rengas: Renga[]; session: any }) {
+  return (
+<div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {rengas.map((renga, i) => {
+          const kaminoku = ((((renga.hokku?.ikku as string) +
+            renga.hokku?.niku) as string) + renga.hokku?.sanku) as string;
+          const shimonoku = ((renga.tsukeku?.yonku as string) +
+            renga.tsukeku?.goku) as string;
+          const likeNum = renga.likes?.length;
+
+          const isLiked = renga.likes.some((like) => like.userId === session?.user?.id);
+          return (
+            <Card
+              key={i}
+              kaminoku={kaminoku}
+              shimonoku={shimonoku}
+              likeNum={likeNum}
+              rengaId={renga.id}
+              isLiked={isLiked}
+              usersName={renga.hokku?.user?.name + '&' + renga.tsukeku?.user?.name}
+            />
+          );
+        })}
+      </div>
+  );
+}

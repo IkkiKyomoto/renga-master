@@ -22,18 +22,17 @@ export default async function Page({
     toast.error(error.message);
   }
   return (
-    <div>
-      <p>お気に入りの付句を選び、連歌を完成させましょう！</p>
-      <div>
-        <div></div>
-        {hokku && (
-          <HokkuCard
-            ikku={hokku.ikku}
-            niku={hokku.niku}
-            sanku={hokku.sanku}
-            description={hokku.description}
-          />
-        )}
+    <div className="text-center">
+        <div className="absolute right-10">
+          {hokku && (
+            <HokkuCard
+              ikku={hokku.ikku}
+              niku={hokku.niku}
+              sanku={hokku.sanku}
+              description={hokku.description}
+            />
+          )}
+
       </div>
       <div>
         <PostedTsukekuCardList hokkuId={params.hokkuId} />

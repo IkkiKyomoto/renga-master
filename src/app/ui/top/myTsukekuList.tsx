@@ -6,6 +6,7 @@ import { Hokku } from "@/app/lib/definitions";
 import { getHokkusByUserId } from "@/app/lib/data";
 import Link from "next/link";
 import HokkuCard from "../tsukeku/hokkuCard";
+import { color } from "@/color";
 
 export default async function MyTsukekuList() {
   const session = await auth();
@@ -21,10 +22,9 @@ export default async function MyTsukekuList() {
   }
 
   return (
-    <div>
-      <h1>未完成のマイ発句</h1>
-
-      <ul>
+    <div className={`bg-white p-6 ${color["card-border"]}`}>
+      <h1 className="text-2xl md:text-3xl lg:text-3xl font-bold mb-6">未完成のマイ発句</h1>
+      <ul className="">
         {hokkus.map((hokku, i) => {
           return (
             <li key={i}>
@@ -40,6 +40,7 @@ export default async function MyTsukekuList() {
           );
         })}
       </ul>
+      {hokkus.length === 0 && <p>未完成の発句はありません</p>}
       {errorMessage && <p>{errorMessage}</p>}
     </div>
   );

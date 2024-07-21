@@ -51,7 +51,9 @@ export default function RengaCompleteForm({
           );
         })}
       </ComponentRadioWrapper>
+      {tsukekus.length > 0 &&
       <button type="submit">投稿する</button>
+    }
     </form>
   );
 }

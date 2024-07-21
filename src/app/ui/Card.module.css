@@ -2,3 +2,38 @@
   writing-mode: vertical-rl;
   margin-bottom: 15px;
 }
+
+.card {
+  width: 7.5rem;
+  padding-top: 5rem;
+  padding-right: 5rem;
+  padding-bottom: 5rem;
+  padding-left: 5rem;
+ /*w-30 pt-5 lg:pr-5 md:pr-5 pr-5 pb-5 pl-5*/
+}
+
+.card_list {
+  /*grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3*/
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+
+}
+
+.card_right_dashed {
+  
+  padding-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 2rem;
+  width: 2rem;
+  border-style: solid dashed solid solid;
+}
+
+.card_left_dashed {
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  width: 2rem;
+  border-style: solid solid solid dashed;
+}

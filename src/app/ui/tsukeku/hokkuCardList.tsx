@@ -20,7 +20,7 @@ export default async function HokkuCardList() {
   }
 
   return (
-    <div>
+    <div className="w-screen m-6 grid gap-6 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
       <ul>
         {hokkus.map((hokku, i) => {
           var isPosted = false;
@@ -39,7 +39,7 @@ export default async function HokkuCardList() {
               <Link
                 href={
                   isPosted || isMine
-                    ? ""
+                    ? `/posted-tsukeku/${hokku.id}`
                     : `/tsukeku/${hokku.id}/create?ikku=${hokku.ikku}&niku=${hokku.niku}&sanku=${hokku.sanku}&description=${hokku.description}`
                 }
               >

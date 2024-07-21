@@ -147,16 +147,8 @@ export async function createLike(userId: string, rengaId: string) {
   try {
     await prisma.like.create({
       data: {
-        user: {
-          connect: {
-            id: userId,
-          },
-        },
-        renga: {
-          connect: {
-            id: rengaId,
-          },
-        },
+        userId: userId,
+        rengaId: rengaId,
       },
     });
   } catch (error: unknown) {

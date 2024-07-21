@@ -5,16 +5,13 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <div>
-      <h1>ログイン</h1>
-      <div>
+    <div className="flex flex-col items-center justify-between">
+      <h1 className="text-3xl font-bold mb-6 mt-6">ログイン</h1>
+      <div className="w-screen">
         <LoginForm />
-      </div>
-      <div>
-        {/* <button onClick={() => signIn('google')}>Google</button> */}
-      </div>
-      <div>
-        <Link href="/register">新規登録</Link>
+        </div>
+      <div className="mt-6">
+        <Link className="font-bold border border-b-black" href="/register">新規登録する</Link>
       </div>
     </div>
   );

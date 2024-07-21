@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Header from "@/app/ui/header";
+import "react-toastify/dist/ReactToastify.css";
 import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import { Session } from "next-auth";

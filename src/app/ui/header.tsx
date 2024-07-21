@@ -4,13 +4,15 @@ import { auth } from "@/auth";
 
 import Link from "next/link";
 import AuthButtons from "./AuthButtons";
+import Image from "next/image";
+import logoImage from "@/../public/logo.png"
+import { myFont } from "../layout";
 
-import { useSession } from "next-auth/react";
 export default async function Header() {
   const session = await auth();
   return (
-    <header className="flex justify-center gap-6 mt-6">
-      <h1 className="text-2xl ">連歌ますたぁ</h1>
+    <header className="sticky top-0 flex justify-center items-center gap-6 h-20 w-full border-b-4 border-slate-700 bg-white">
+<Link href="/">      <h1 className="text-2xl"><span className="font-bold">連歌</span><span className={myFont.className}>ますたぁ</span></h1></Link>
       <nav className="">
         <ul className="flex gap-4 justify-end">
           <li>

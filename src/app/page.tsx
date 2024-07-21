@@ -8,14 +8,20 @@ import { auth } from "@/auth";
 export default async function Home() {
   const session = await auth();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 ">
+    <main className="p-10">
+      <div className="flex flex-col items-center justify-between">
       {session && (
-        <div>
+        <div className="">
           <MyTsukekuList />
         </div>
-      )}
-      <NewCards />
-      <RankingCards />
+      ) }
+        <div className="flex flex-raw mt-6 ">
+          <NewCards />
+
+          <RankingCards />
+        </div>
+      </div>
     </main>
   );
 }
+

@@ -40,7 +40,8 @@ export async function authenticate(email: string, password: string) {
       email: email,
       password: password,
     });
-  } catch (e) {
+  } catch (error) {
+    console.log(error);
     return "ログインに失敗しました";
   }
   redirect("/");

@@ -1,3 +1,7 @@
+import React from "react";
+import styles from "../Card.module.css";
+import { color } from "@/color";
+
 export default function HokkuCard({
   ikku,
   niku,
@@ -14,15 +18,13 @@ export default function HokkuCard({
   isMine?: boolean;
 }) {
   return (
-    <div>
+    <div className={`${styles.card_left_dashed} ${color["card-border"]} ${color["card-container"]}`}>
       <div>
-        <h1>{ikku}</h1>
-        <p>{niku}</p>
-        <p>{sanku}</p>
-        <p>{description}</p>
+        <p className={styles.vertical_text}>{ikku+niku+sanku}</p>
+        {/* <p>{description}</p> */}
       </div>
-      {isPosted && <p>投稿済</p>}
-      {isMine && <p>マイ発句</p>}
+      {isPosted && <p className="text-base text-center rounded-full border w-6 h-7 border-red-500 text-red-500">済</p>}
+      {isMine && <p className="text-base text-center rounded-full border w-6 h-7 border-red-500 text-red-500">自</p>}
       <p></p>
     </div>
   );

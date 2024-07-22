@@ -14,6 +14,7 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",
     "@prisma/client": "^5.16.2",
+    "@types/react-scroll": "^1.8.10",
     "@vercel/postgres": "^0.9.0",
     "encoding": "^0.1.13",
     "next": "15.0.0-rc.0",

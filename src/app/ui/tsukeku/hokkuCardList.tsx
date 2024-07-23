@@ -21,7 +21,7 @@ export default async function HokkuCardList() {
 
   return (
     <div>
-      <ul className="w-screen m-6 grid gap-6 grid-cols-6 md:grid-cols-8 lg:grid-cols-12">
+      <ul className="w-screen m-6 grid gap-6 grid-cols-4 md:grid-cols-8 lg:grid-cols-12">
         {hokkus.map((hokku, i) => {
           var isPosted = false;
           var isMine = false;

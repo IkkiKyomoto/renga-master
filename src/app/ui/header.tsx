@@ -14,7 +14,7 @@ export default function Header({session}: {session: Session | null}) {
   const windowSize = useWindowSize();
 
   return (
-    <header className="sticky top-0 flex justify-center items-center gap-6 h-20 w-full border-b-4 border-slate-700 bg-white">
+    <header className="sticky top-0 flex justify-center items-center gap-6 h-20 w-full border-b-4 border-slate-700 bg-white z-20">
       <Link href="/">
         {" "}
         <h1 className="text-2xl font-bold">

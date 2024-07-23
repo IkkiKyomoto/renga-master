@@ -32,7 +32,7 @@ export default async function MyTsukekuList() {
           return (
             <li key={i}>
               <Link href={`/posted-tsukeku/${hokku.id}`}>
-                <div className="relative top--2 text-xl text-red-600">{hokku.tsukeku?.length}</div> 
+                <div className="relative top--2 text-xl text-red-600 z-10">{hokku.tsukeku?.length}</div> 
                 <HokkuCard
                   ikku={hokku.ikku}
                   niku={hokku.niku}

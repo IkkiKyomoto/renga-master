@@ -75,6 +75,7 @@ export default function Page() {
           することができます。
         </p>
         <h3 id="instruction-2">2.誰かの発句に付句する</h3>
+        <p>誰かが投稿した発句に付句してみましょう。</p>
         <p>
           一. 画面上の「<span className="emphasis">付句する</span>
           」をクリックorタップしてみましょう。
@@ -90,22 +91,22 @@ export default function Page() {
         </p>
         <h3 id="instruction-3">3.連歌を完成させる</h3>
         <p>
-          一. あなたの発句には、
+          あなたの発句には、
           <span className="emphasis">他の詠み手の付句</span>
           が投稿されてきます。その中からお好みの付句を
           <span className="emphasis">選択</span>し、連歌を完成させましょう！
         </p>
         <p>
-          二. <span className="emphasis">トップ画面</span>に、あなたの
+          一. <span className="emphasis">トップ画面</span>に、あなたの
           <span className="emphasis">未完成の発句</span>
           が表示されます。クリックorタップしてみましょう。
         </p>
         <p>
-          三. お好みの付句を<span className="emphasis">選択</span>
+          二. お好みの付句を<span className="emphasis">選択</span>
           し、投稿してみましょう。
         </p>
         <p>
-          四. 連歌が完成しました！
+          三. 連歌が完成しました！
           <span className="emphasis">トップ画面から確認</span>
           することができます。
         </p>

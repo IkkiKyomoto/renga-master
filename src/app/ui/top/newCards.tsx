@@ -18,7 +18,7 @@ export default async function NewCards() {
   const session = await auth();
 
   return (
-    <div className={`w-80 bg-white p-6 m-6  ${color["card-border"]}`}>
+    <div className={`bg-white p-6 m-6 w-80 lg:w-96 ${color["card-border"]}`}>
       <h1 className="text-2xl md:text-3xl lg:text-3xl font-bold mb-6">
         新着連歌
       </h1>

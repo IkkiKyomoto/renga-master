@@ -42,7 +42,7 @@ export default function Page() {
       </nav>
       <article
         id="instruction__article"
-        className="mr-20 ml-20 bg-white p-3 mb-20"
+        className="mr-6 ml-6 md:mr-20 md:ml-20 bg-white p-3 mb-20"
       >
         <h2>連歌とは</h2>
         <p>

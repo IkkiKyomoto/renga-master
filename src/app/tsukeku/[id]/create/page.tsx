@@ -17,7 +17,7 @@ export default function Page() {
     notFound();
   }
   return (
-    <div className="flex flex-col gap-6 items-center justify-center">
+    <div className="flex flex-col gap-6 items-center justify-center mb-12">
       <HokkuCard
         ikku={ikku}
         niku={niku}

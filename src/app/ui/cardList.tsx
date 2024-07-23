@@ -11,7 +11,8 @@ export default function CardList({
   session: any;
 }) {
   return (
-    <div className="grid gap-6 grid-cols-2 lg:grid-cols-3">
+    <div>
+      <div className="grid gap-6 grid-cols-3 :grid-cols-6">
       {rengas.map((renga, i) => {
         const kaminoku = ((((renga.hokku?.ikku as string) +
           renga.hokku?.niku) as string) + renga.hokku?.sanku) as string;
@@ -37,6 +38,7 @@ export default function CardList({
         );
       })}
       {rengas.length === 0 && <p>まだありません</p>}
+      </div>
     </div>
   );
 }

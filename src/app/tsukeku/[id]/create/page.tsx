@@ -4,10 +4,9 @@ import HokkuCard from "@/app/ui/tsukeku/hokkuCard";
 import TsukekuForm from "@/app/ui/tsukeku/tsukeku-form";
 import { useParams, useSearchParams } from "next/navigation";
 import { notFound } from "next/navigation";
-import { Hokku } from "@/app/lib/definitions";
 
 export default function Page() {
-  const params = useParams();
+
   const searchParams = useSearchParams();
   const ikku = searchParams.get("ikku") as string;
   const niku = searchParams.get("niku") as string;
@@ -18,7 +17,7 @@ export default function Page() {
     notFound();
   }
   return (
-    <div>
+    <div className="flex flex-col gap-6 items-center justify-center">
       <HokkuCard
         ikku={ikku}
         niku={niku}

@@ -31,7 +31,7 @@ export default function HokkuCard({
         </p>
       )}
       {isMine && (
-        <p className="text-base text-center rounded-full border w-6 h-7 border-red-500 text-red-500">
+        <p className="text-base text-center rounded-full border w-6 h-7 border-red-500 text-red-500 text-bottom">
           自
         </p>
       )}

@@ -26,21 +26,21 @@ export default function TsukekuForm() {
     }
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="shiku">第四句</label>
-          <input type="text" id="shiku" name="shiku" />
+    <div className="flex justify-center items-center ">
+      <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div className="mb-4">
+          <label htmlFor="shiku" className="block text-black text-base font-bold mb-2">第四句</label>
+          <input type="text" id="shiku" name="shiku"  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
-        <div>
-          <label htmlFor="tsukeku">第五句</label>
-          <input type="text" id="tsukeku" name="goku" />
+        <div className="mb-4">
+          <label htmlFor="tsukeku" className="block text-black text-base font-bold mb-2">第五句</label>
+          <input type="text" id="tsukeku" name="goku"  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
-        <div>
-          <label htmlFor="tsukeku">説明</label>
-          <textarea name="description" id="description"></textarea>
+        <div className="mb-4">
+          <label htmlFor="tsukeku" className="block text-black text-base font-bold mb-2">説明</label>
+          <textarea name="description" id="description"  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
         </div>
-        <button type="submit">送信</button>
+        <button type="submit" className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">送信</button>
       </form>
     </div>
   );

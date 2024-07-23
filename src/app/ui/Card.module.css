@@ -28,7 +28,9 @@
   padding-bottom: 1rem;
   padding-right: 2rem;
   width: 2rem;
+  height: 24rem;
   border-style: solid dashed solid solid;
+  border-width: 2px;
 }
 
 .card_left_dashed {
@@ -39,6 +41,19 @@
   padding-bottom: 1rem;
   padding-left: 1rem;
   width: 2rem;
-  height: 22rem;
+  height: 24rem;
   border-style: solid solid solid dashed;
+  border-width: 2px;
+}
+
+.card_selected {
+  border: 4px solid #506ce7;
+  background-color: #fffbeb;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  width: 2rem;
+  height: 24rem;
+
 }

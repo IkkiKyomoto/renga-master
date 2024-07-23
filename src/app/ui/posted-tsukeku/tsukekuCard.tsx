@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "../Card.module.css";
+import styles from "@/app/ui/Card.module.css";
+import { color } from "@/color";
 
 export default function TsukekuCard({
   yonku,
@@ -11,7 +12,7 @@ export default function TsukekuCard({
   description: string | null;
 }) {
   return (
-    <div className={styles.card_right_dashed}>
+    <div>
       <p>{yonku + goku}</p>
     </div>
   );

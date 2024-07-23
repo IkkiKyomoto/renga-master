@@ -19,7 +19,7 @@ export default function HokkuCard({
 }) {
   return (
     <div
-      className={`${styles.card_left_dashed} ${color["card-border"]} ${color["card-container"]}`}
+      className={`${styles.card_left_dashed}`}
     >
       <div>
         <p className={styles.vertical_text}>{ikku + niku + sanku}</p>

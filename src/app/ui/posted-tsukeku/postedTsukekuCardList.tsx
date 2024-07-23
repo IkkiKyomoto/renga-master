@@ -10,10 +10,10 @@ export default async function PostedTsukekuCardList({
   hokkuId: string;
 }) {
   const tsukekus = await getTsukekusByHokkuId(hokkuId);
-  console.log(tsukekus);
+
   return (
-    <div className="ml-20 mr-40 ">
-      <h1 className="text-center text-3xl font-bold mb-6 mt-6">付句選択</h1>
+    <div className="text-center mx-6">
+      <h1 className="text-3xl font-bold mb-6 mt-6">付句選択</h1>
       <div>
         <Suspense fallback={<div>loading...</div>}>
           <RengaCompleteForm tsukekus={tsukekus} hokkuId={hokkuId} />

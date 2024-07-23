@@ -6,6 +6,8 @@ import { getHokkuById } from "@/app/lib/data";
 import PostedTsukekuCardList from "@/app/ui/posted-tsukeku/postedTsukekuCardList";
 import { Hokku } from "@/app/lib/definitions";
 import { toast } from "react-toastify";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export default async function Page({
   params,
@@ -15,15 +17,21 @@ export default async function Page({
   };
 }) {
   var hokku: Hokku | null = null;
+  const session = await auth();
+  
   try {
     hokku = await getHokkuById(params.hokkuId);
+
   } catch (error: any) {
     console.log(error);
-    toast.error(error.message);
+    //toast.error(error.message);
+  }
+  if (session?.user?.id !== hokku?.userId) {
+    redirect('/')
   }
   return (
-    <div className="text-center">
-      <div className="absolute right-10">
+    <div className="flex flex-col">
+      <div className="mx-auto mt-6">
         {hokku && (
           <HokkuCard
             ikku={hokku.ikku}
@@ -33,7 +41,7 @@ export default async function Page({
           />
         )}
       </div>
-      <div>
+      <div >
         <PostedTsukekuCardList hokkuId={params.hokkuId} />
       </div>
     </div>

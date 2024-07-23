@@ -34,14 +34,16 @@ export default async function HokkuCardList() {
           if (hokku.userId === user?.id) {
             isMine = true;
           }
+          var href = ''
+          if (isMine) {
+            href = `/posted-tsukeku/${hokku.id}`
+          } else if (!isPosted) {
+            href = `/tsukeku/${hokku.id}/create?ikku=${hokku.ikku}&niku=${hokku.niku}&sanku=${hokku.sanku}&description=${hokku.description}`
+          }
           return (
             <li key={i}>
               <Link
-                href={
-                  isPosted || isMine
-                    ? `/posted-tsukeku/${hokku.id}`
-                    : `/tsukeku/${hokku.id}/create?ikku=${hokku.ikku}&niku=${hokku.niku}&sanku=${hokku.sanku}&description=${hokku.description}`
-                }
+                href={href}
               >
                 <Suspense fallback={<p>ロード中</p>}>
                   <HokkuCard

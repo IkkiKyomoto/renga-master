@@ -1,12 +1,10 @@
-'use client'
+"use client";
 
 //カードを表示するコンポーネント
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Card.module.css";
-import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
 import CardLikeWrapper from "@/app/ui/cardLikeWrapper";
-import { color } from "@/color";
 
 
 export default function Card({
@@ -24,18 +22,17 @@ export default function Card({
   isLiked: boolean;
   usersName: string;
 }) {
-  const {data: session }= useSession()
-  const isLikedisable = isLiked || (session === null)
+  const { data: session } = useSession();
+  const isLikedisable = isLiked || session === null;
   return (
     <div className={styles.card}>
       <div className={styles.vertical_text}>
         <div className="font-bold">
-        <p>{kaminoku}</p>
-        <p className="indent-2">{shimonoku}</p>
+          <p>{kaminoku}</p>
+          <p className="indent-2">{shimonoku}</p>
         </div>
       </div>
       <div className="flex flex-row ">
-
         <p className={styles.vertical_text}>{usersName}</p>
         <div>
           <CardLikeWrapper
@@ -43,12 +40,13 @@ export default function Card({
             likeNum={likeNum}
             isLikedisable={isLikedisable}
           >
-            <p className={`text-center rounded-full border w-6 h-7 ${isLikedisable ? "border-red-500 text-red-500": "border-gray-400  text-gray-400"}`}>
+            <p
+              className={`text-center rounded-full border w-6 h-7 ${isLikedisable ? "border-red-500 text-red-500" : "border-gray-400  text-gray-400"}`}
+            >
               良
             </p>
           </CardLikeWrapper>
         </div>
-
       </div>
     </div>
   );

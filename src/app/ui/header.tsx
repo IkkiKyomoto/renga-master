@@ -1,40 +1,36 @@
-"use server";
-
-import { auth } from "@/auth";
+"use client";
 
 import Link from "next/link";
-import AuthButtons from "./AuthButtons";
-import Image from "next/image";
-import logoImage from "@/../public/logo.png"
-import { myFont } from "../layout";
 
-export default async function Header() {
-  const session = await auth();
+import HeaderList from "@/app/ui/headerList";
+import { useSession } from "next-auth/react";
+import useWindowSize from "@/hooks/useWindowSize";
+import DrawerComponentHeader from "./drawerComponentHeader";
+import { pcStyle } from "@/app/ui/headerListStyle";
+import { Session } from "next-auth";
+
+export default function Header({session}: {session: Session | null}) {
+
+  const windowSize = useWindowSize();
+
   return (
     <header className="sticky top-0 flex justify-center items-center gap-6 h-20 w-full border-b-4 border-slate-700 bg-white">
-<Link href="/">      <h1 className="text-2xl"><span className="font-bold">連歌</span><span className={myFont.className}>ますたぁ</span></h1></Link>
-      <nav className="">
-        <ul className="flex gap-4 justify-end">
-          <li>
-            <Link href="/">トップ</Link>
-          </li>
-          <li>
-            <Link href="/hokku">発句する</Link>
-          </li>
-          <li>
-            <Link href="/tsukeku">付句する</Link>
-          </li>
-          <li>
-            <Link href={`/my-page/${session?.user?.id}`}>マイページ</Link>
-          </li>
-          <li>
-            <Link href="/instruction">遊び方</Link>
-          </li>
-          <li>
-            <AuthButtons />
-          </li>
-        </ul>
-      </nav>
+      <Link href="/">
+        {" "}
+        <h1 className="text-2xl font-bold">
+連歌ますたぁ
+        </h1>
+      </Link>
+
+        {windowSize.width < 768 ? (
+          <DrawerComponentHeader session={session} />
+        ) : (
+          <nav>
+            <HeaderList session={session} style={pcStyle} />
+          </nav>
+        )}
+
+  
     </header>
   );
 }

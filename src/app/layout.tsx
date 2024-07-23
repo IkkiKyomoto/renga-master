@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import localFont from 'next/font/local'
+import localFont from "next/font/local";
 import "./ui/globals.css";
 
 import SomethingProvider from "./ui/somethingProvider";
@@ -10,10 +10,10 @@ import Header from "@/app/ui/header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const myFont = localFont({
-  src: '../custom-font/TsukimiRounded-SemiBold.ttf',
-  display: 'swap',
-  style: 'calligraphy'
-})
+  src: "../custom-font/TsukimiRounded-SemiBold.ttf",
+  display: "swap",
+  style: "calligraphy",
+});
 export const metadata: Metadata = {
   title: "連歌ますたぁ",
   description: "連歌を作って遊ぶSNS",
@@ -35,7 +35,7 @@ export default async function RootLayout({
     <html lang="ja">
       <body className={inter.className}>
         <SomethingProvider session={session}>
-          <Header />
+          <Header session={session}/>
           {children}
         </SomethingProvider>
       </body>

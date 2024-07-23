@@ -1,27 +1,26 @@
 #instruction__article h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
 }
 
 #instruction__article h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
 }
 
 #instruction__article h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
 }
 
-
 #instruction__article p {
-    font-size: 1rem;
-    margin-bottom: 1rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .emphasis {
-    color: #B22D35;
+  color: #b22d35;
 }

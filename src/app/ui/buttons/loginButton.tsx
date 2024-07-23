@@ -9,6 +9,7 @@ export function LoginButton() {
       onClick={() => {
         router.push("/login");
       }}
+      className="text-blue-600"
     >
       ログイン
     </button>

@@ -23,16 +23,15 @@ export default async function Page({
   }
   return (
     <div className="text-center">
-        <div className="absolute right-10">
-          {hokku && (
-            <HokkuCard
-              ikku={hokku.ikku}
-              niku={hokku.niku}
-              sanku={hokku.sanku}
-              description={hokku.description}
-            />
-          )}
-
+      <div className="absolute right-10">
+        {hokku && (
+          <HokkuCard
+            ikku={hokku.ikku}
+            niku={hokku.niku}
+            sanku={hokku.sanku}
+            description={hokku.description}
+          />
+        )}
       </div>
       <div>
         <PostedTsukekuCardList hokkuId={params.hokkuId} />

@@ -3,9 +3,9 @@ import { auth } from "@/auth";
 import { LoginButton } from "./buttons/loginButton";
 import { LogoutButton } from "./buttons/logoutButton";
 import { RegisterButton } from "./buttons/registerButton";
+import { Session } from "next-auth";
 
-export default async function AuthButtons() {
-  const session = await auth();
+export default function AuthButtons({ session }: { session: Session | null }) {
   return session ? (
     <div>
       <LogoutButton />

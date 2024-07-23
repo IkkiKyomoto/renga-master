@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useSession } from "next-auth/react";
 import { createLike } from "@/app/lib/rengaActions";
 import { toast } from "react-toastify";
@@ -21,8 +21,6 @@ export default function CardLikeWrapper({
   const router = useRouter();
 
   async function handleClick() {
-    
-
     if (!isLikedisable) {
       try {
         const userId = session?.user?.id as string;

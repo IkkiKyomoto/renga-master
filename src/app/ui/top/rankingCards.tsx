@@ -21,9 +21,11 @@ export default async function RankingCards() {
 
   return (
     <div className={`bg-white p-6 m-6 ${color["card-border"]}`}>
-      <h1 className="text-2xl md:text-3xl lg:text-3xl font-bold mb-6">人気連歌</h1>
-      <CardList rengas={rengas} session={session}/>
-      
+      <h1 className="text-2xl md:text-3xl lg:text-3xl font-bold mb-6">
+        人気連歌
+      </h1>
+      <CardList rengas={rengas} session={session} />
+
       {errorMessage && <p>{errorMessage}</p>}
     </div>
   );

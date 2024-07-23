@@ -12,7 +12,7 @@ export default function TsukekuCard({
 }) {
   return (
     <div className={styles.card_right_dashed}>
-      <p>{yonku+ goku}</p>
+      <p>{yonku + goku}</p>
     </div>
   );
 }

@@ -23,8 +23,10 @@ export default async function MyTsukekuList() {
 
   return (
     <div className={`bg-white p-6 ${color["card-border"]}`}>
-      <h1 className="text-2xl md:text-3xl lg:text-3xl font-bold mb-6">未完成のマイ発句</h1>
-      <ul className="">
+      <h1 className="text-2xl md:text-3xl lg:text-3xl font-bold mb-6">
+        未完成のマイ発句
+      </h1>
+      <ul className="flex flex-raw gap-6">
         {hokkus.map((hokku, i) => {
           return (
             <li key={i}>

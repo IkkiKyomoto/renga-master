@@ -18,13 +18,23 @@ export default function HokkuCard({
   isMine?: boolean;
 }) {
   return (
-    <div className={`${styles.card_left_dashed} ${color["card-border"]} ${color["card-container"]}`}>
+    <div
+      className={`${styles.card_left_dashed} ${color["card-border"]} ${color["card-container"]}`}
+    >
       <div>
-        <p className={styles.vertical_text}>{ikku+niku+sanku}</p>
+        <p className={styles.vertical_text}>{ikku + niku + sanku}</p>
         {/* <p>{description}</p> */}
       </div>
-      {isPosted && <p className="text-base text-center rounded-full border w-6 h-7 border-red-500 text-red-500">済</p>}
-      {isMine && <p className="text-base text-center rounded-full border w-6 h-7 border-red-500 text-red-500">自</p>}
+      {isPosted && (
+        <p className="text-base text-center rounded-full border w-6 h-7 border-red-500 text-red-500">
+          済
+        </p>
+      )}
+      {isMine && (
+        <p className="text-base text-center rounded-full border w-6 h-7 border-red-500 text-red-500">
+          自
+        </p>
+      )}
       <p></p>
     </div>
   );

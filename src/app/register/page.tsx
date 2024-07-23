@@ -10,7 +10,9 @@ export default function Page() {
         <RegisterForm />
       </div>
       <div className="mt-6">
-        <Link className="font-bold border border-b-black" href="/login">ログインする</Link>
+        <Link className="font-bold border border-b-black" href="/login">
+          ログインする
+        </Link>
       </div>
     </div>
   );

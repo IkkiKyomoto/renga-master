@@ -13,6 +13,13 @@
   "type": "module",
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",
+    "@emotion/cache": "^11.13.0",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.4",
+    "@mui/material": "^5.16.4",
+    "@mui/material-nextjs": "^5.16.4",
+    "@mui/styled-engine-sc": "6.0.0-alpha.18",
     "@prisma/client": "^5.16.2",
     "@types/react-scroll": "^1.8.10",
     "@vercel/postgres": "^0.9.0",
@@ -25,6 +32,8 @@
     "react": "19.0.0-rc-df5f2736-20240712",
     "react-dom": "19.0.0-rc-df5f2736-20240712",
     "react-toastify": "^10.0.5",
+    "styled-components": "^6.1.12",
+    "styles": "link:@mui/material/styles",
     "zod": "^3.23.8"
   },
   "devDependencies": {

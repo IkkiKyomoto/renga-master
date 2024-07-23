@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import { Session } from "next-auth";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 
 export default function SomethingProvider({
   children,
@@ -15,13 +16,15 @@ export default function SomethingProvider({
 }) {
   return (
     <div>
-      <SessionProvider session={session}>
-        <div>
-          <ToastContainer />
+      <AppRouterCacheProvider>
+        <SessionProvider session={session}>
+          <div>
+            <ToastContainer position="top-left" />
 
-          {children}
-        </div>
-      </SessionProvider>
+            {children}
+          </div>
+        </SessionProvider>
+      </AppRouterCacheProvider>
     </div>
   );
 }

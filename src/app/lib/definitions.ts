@@ -55,3 +55,8 @@ export type Like = {
   createdAt?: Date;
   updatedAt?: Date;
 };
+
+export type HeaderListStyle = {
+  ul: string;
+  li: string;
+};

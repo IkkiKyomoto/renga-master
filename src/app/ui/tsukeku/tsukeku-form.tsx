@@ -3,8 +3,9 @@ import { createTsukeku } from "@/app/lib/rengaActions";
 import React from "react";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { Session } from "next-auth";
 
-export default function TsukekuForm() {
+export default function TsukekuForm({session }: {session: Session | null}) {
   const params = useParams();
   const router = useRouter();
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -17,6 +18,8 @@ export default function TsukekuForm() {
       form.tsukeku.value,
       form.description.value,
       hokkuId,
+      session?.user?.id as string
+      
     );
     if (message === undefined) {
       toast.success("送信しました");

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-export default function () {
+export default function useWindowSize () {
   const [windowSize, setWindowSize] = useState({
     width: 0,
     height: 0,

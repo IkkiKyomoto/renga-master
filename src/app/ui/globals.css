@@ -4,15 +4,15 @@
 
 @font-face {
   font-family: "Aoyanagi Reisho";
-  src: url("../../../public/font/AoyagiKouzanTOTF.otf");
+  src: url("../../font/AoyagiKouzanTOTF.otf");
 }
 @font-face {
   font-family: "Tamanegi Kaisho";
-  src: url("../../../public/font/玉ねぎ楷書激無料版v7改.ttf");
+  src: url("../../font/玉ねぎ楷書激無料版v7改.ttf");
 }
 @font-face {
   font-family: "Tamanegi Mincho";
-  src: url("../../../public/font/tamanegi_kaisho_free.ttf");
+  src: url("../../font/tamanegi_kaisho_free.ttf");
 }
 
 :root {

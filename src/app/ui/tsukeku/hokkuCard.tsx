@@ -18,9 +18,7 @@ export default function HokkuCard({
   isMine?: boolean;
 }) {
   return (
-    <div
-      className={`${styles.card_left_dashed}`}
-    >
+    <div className={`${styles.card_left_dashed}`}>
       <div>
         <p className={styles.vertical_text}>{ikku + niku + sanku}</p>
         {/* <p>{description}</p> */}

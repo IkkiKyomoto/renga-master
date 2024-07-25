@@ -6,7 +6,6 @@ import { useParams, useSearchParams } from "next/navigation";
 import { notFound } from "next/navigation";
 
 export default function Page() {
-
   const searchParams = useSearchParams();
   const ikku = searchParams.get("ikku") as string;
   const niku = searchParams.get("niku") as string;

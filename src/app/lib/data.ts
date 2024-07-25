@@ -48,9 +48,10 @@ export async function getRengasByDate(perPage = 12) {
         },
       },
     });
+    console.log(rengas);
     return rengas;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new Error("新着連歌の取得に失敗しました");
   }
 }
@@ -108,10 +109,10 @@ export async function getRengasByGoodForWeek(perPage = 12) {
         },
       },
     });
-
+    console.log(rengas);
     return rengas;
   } catch (error: unknown) {
-    console.log(error);
+    console.error(error);
     throw new Error("週間いいねランキングの取得に失敗しました");
   }
 }
@@ -138,10 +139,11 @@ export async function getHokkus() {
         completed: false,
       },
     });
+    console.log(hokkus);
     return hokkus;
   } catch (error) {
-    console.log(error);
-    throw error;
+    console.error(error);
+    throw new Error("付句の取得に失敗しました");
   }
 }
 
@@ -165,9 +167,10 @@ export async function getUserById(id: string) {
     if (!user) {
       throw new Error("ユーザーが見つかりません");
     }
+    console.log(user);
     return user;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new Error("ユーザー情報の取得に失敗しました");
   }
 }
@@ -200,10 +203,11 @@ export async function getHokkusByUserId(userId: string) {
         userId: userId,
       },
     });
+    console.log(hokkus);
 
     return hokkus;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new Error("マイ発句の取得に失敗しました");
   }
 }
@@ -215,8 +219,10 @@ export async function getTsukekusByHokkuId(hokkuId: string) {
         hokkuId: hokkuId,
       },
     });
+    console.log(tsukekus);
     return tsukekus;
   } catch (error: unknown) {
+    console.error(error);
     throw new Error("付句の取得に失敗しました");
   }
 }
@@ -231,6 +237,22 @@ export async function getHokkuById(id: string) {
     console.log(hokku);
     return hokku;
   } catch (error: unknown) {
+    console.error(error);
     throw new Error("発句の取得に失敗しました");
   }
+}
+
+export async function getUser(email: string): Promise<User | null> {
+  const user: User | null = await prisma.user.findFirst({
+    select: {
+      id: true,
+      name: true,
+      password: true,
+      emailVerified: true,
+    },
+    where: {
+      email: email,
+    },
+  });
+  return user;
 }

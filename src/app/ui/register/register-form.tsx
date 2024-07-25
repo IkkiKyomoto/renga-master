@@ -3,6 +3,7 @@
 import { createUser } from "@/app/lib/userActions";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { sendVerificationEmail } from "@/app/lib/userActions";
 
 export default function RegisterForm() {
   const router = useRouter();
@@ -10,18 +11,17 @@ export default function RegisterForm() {
     event.preventDefault();
 
     const form = event.currentTarget;
-    const message = await createUser(
-      form.userName.value,
-      form.email.value,
-      form.password.value,
-      form.passwordConfirm.value,
-    );
-
-    if (message === undefined) {
-      toast.success("登録しました");
-      router.push("/");
-    } else {
-      toast.error(message);
+    try {
+      await createUser(
+        form.userName.value,
+        form.email.value,
+        form.password.value,
+        form.passwordConfirm.value,
+      );
+      await sendVerificationEmail(form.email.value);
+      router.push("/register/success?email=" + form.email.value);
+    } catch (error: any) {
+      toast.error(error.message);
     }
   }
   return (

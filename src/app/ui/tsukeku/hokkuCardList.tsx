@@ -13,10 +13,11 @@ export default async function HokkuCardList() {
   const session = await auth();
   const user = session?.user;
   var hokkus: Hokku[] = [];
+  var errorMessage;
   try {
     hokkus = await getHokkus();
-  } catch (error) {
-    toast.error("発句の取得に失敗しました");
+  } catch (error: any) {
+    errorMessage = error.message;
   }
 
   return (
@@ -34,17 +35,15 @@ export default async function HokkuCardList() {
           if (hokku.userId === user?.id) {
             isMine = true;
           }
-          var href = ''
+          var href = "";
           if (isMine) {
-            href = `/posted-tsukeku/${hokku.id}`
+            href = `/posted-tsukeku/${hokku.id}`;
           } else if (!isPosted) {
-            href = `/tsukeku/${hokku.id}/create?ikku=${hokku.ikku}&niku=${hokku.niku}&sanku=${hokku.sanku}&description=${hokku.description}`
+            href = `/tsukeku/${hokku.id}/create?ikku=${hokku.ikku}&niku=${hokku.niku}&sanku=${hokku.sanku}&description=${hokku.description}`;
           }
           return (
             <li key={i}>
-              <Link
-                href={href}
-              >
+              <Link href={href}>
                 <Suspense fallback={<p>ロード中</p>}>
                   <HokkuCard
                     key={i}
@@ -60,6 +59,7 @@ export default async function HokkuCardList() {
             </li>
           );
         })}
+        {errorMessage && <p>{errorMessage}</p>}
       </ul>
     </div>
   );

@@ -4,27 +4,35 @@ import React, { useState } from "react";
 import { createHokku } from "@/app/lib/rengaActions";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { Session } from "next-auth";
 
-export function HokkuForm() {
+export function HokkuForm({ session }: { session: Session | null }) {
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
   const router = useRouter();
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
-
+    if (!session || !session.user || !session.user.id) {
+      toast.error(
+        "ユーザー情報が読み取れません。もう一度やり直すか再ログインをお願いします。",
+      );
+      return;
+    }
     // toast.error("エラーが発生しました。サインアウトします")
     // await logout()
-    const message = await createHokku(
-      form.shoku.value,
-      form.niku.value,
-      form.sanku.value,
-      form.description.value,
-    );
-    if (message === undefined) {
+    try {
+      await createHokku(
+        form.shoku.value,
+        form.niku.value,
+        form.sanku.value,
+        form.description.value,
+        session.user.id,
+      );
       toast.success("投稿しました");
-      router.push("/");
+    } catch (error: any) {
+      setErrorMessage(error.message);
     }
-    setErrorMessage(message);
+    router.push("/");
   }
   return (
     <div className="flex justify-center items-center ">

@@ -7,6 +7,7 @@ export type User = {
   updatedAt?: Date;
   image?: string | null;
   likes?: Like[];
+  emailVerified?: boolean;
 };
 
 export type Hokku = {
@@ -54,9 +55,4 @@ export type Like = {
   rengaId: string;
   createdAt?: Date;
   updatedAt?: Date;
-};
-
-export type HeaderListStyle = {
-  ul: string;
-  li: string;
 };

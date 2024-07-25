@@ -7,13 +7,6 @@ import SomethingProvider from "./ui/somethingProvider";
 import { auth } from "@/auth";
 import Header from "@/app/ui/header";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export const myFont = localFont({
-  src: "../custom-font/TsukimiRounded-SemiBold.ttf",
-  display: "swap",
-  style: "calligraphy",
-});
 export const metadata: Metadata = {
   title: "連歌ますたぁ",
   description: "連歌を作って遊ぶSNS",
@@ -33,9 +26,9 @@ export default async function RootLayout({
 
   return (
     <html lang="ja">
-      <body className={inter.className}>
+      <body>
         <SomethingProvider session={session}>
-          <Header session={session}/>
+          <Header session={session} />
           {children}
         </SomethingProvider>
       </body>

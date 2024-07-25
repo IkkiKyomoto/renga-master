@@ -25,7 +25,7 @@ export default async function RankingCards() {
         人気連歌
       </h1>
       <CardList rengas={rengas} session={session} />
-
+      {!errorMessage && rengas.length === 0 && <p>まだありません</p>}
       {errorMessage && <p>{errorMessage}</p>}
     </div>
   );

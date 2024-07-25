@@ -22,7 +22,7 @@ datasource db {
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
-  emailVerified DateTime?
+  emailVerified Boolean @default(false)
   password  String
   name      String 
   image         String?
@@ -69,11 +69,14 @@ model Session {
 }
 
 model VerificationToken {
+  id         String   @id @default(cuid())
   identifier String
-  token      String
+  token      String   @unique
   expires    DateTime
- 
-  @@id([identifier, token])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([identifier, token])
 }
 
 model Authenticator {

@@ -18,20 +18,19 @@ export default async function Page({
 }) {
   var hokku: Hokku | null = null;
   const session = await auth();
-  
+
   try {
     hokku = await getHokkuById(params.hokkuId);
-
   } catch (error: any) {
     console.log(error);
     //toast.error(error.message);
   }
   if (session?.user?.id !== hokku?.userId) {
-    redirect('/')
+    redirect("/");
   }
   return (
     <div className="flex flex-col">
-            <h1 className="text-3xl font-bold mb-6 mt-6 text-center">付句選択</h1>
+      <h1 className="text-3xl font-bold mb-6 mt-6 text-center">付句選択</h1>
       <div className="mx-auto mt-6">
         {hokku && (
           <HokkuCard

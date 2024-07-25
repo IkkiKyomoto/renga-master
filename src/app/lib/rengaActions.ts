@@ -2,8 +2,6 @@
 
 import { z } from "zod";
 import prisma from "@/app/lib/prisma";
-import { redirect } from "next/navigation";
-import { auth } from "@/auth";
 
 const tooMuchMessage = "文字数が多すぎます";
 const tooFewMessage = "文字数が少なすぎます";
@@ -42,6 +40,7 @@ export async function createHokku(
   niku: string,
   sanku: string,
   description: string,
+  userId: string,
 ) {
   const validateFields = hokkuFormScheme.safeParse({
     shoku,
@@ -52,11 +51,10 @@ export async function createHokku(
     return validateFields.error.errors[0].message;
   }
   const data = validateFields.data;
-  const session = await auth();
-  const id = session?.user?.id;
   try {
-    const hokku = await prisma.user.update({
-      where: { id: id },
+    console.log(`submit hokku of ${userId}`);
+    await prisma.user.update({
+      where: { id: userId },
       data: {
         hokkus: {
           create: {
@@ -68,8 +66,10 @@ export async function createHokku(
         },
       },
     });
+    console.log(`create hokku of ${userId}`);
   } catch (error: unknown) {
-    return "送信に失敗しました";
+    console.error(error);
+    throw new Error("発句の作成に失敗しました。");
   }
 }
 
@@ -78,6 +78,7 @@ export async function createTsukeku(
   goku: string,
   description: string,
   hokkuId: string,
+  userId: string,
 ) {
   const validateFields = tsukekuFormScheme.safeParse({
     shiku,
@@ -87,10 +88,9 @@ export async function createTsukeku(
     return validateFields.error.errors[0].message;
   }
   const data = validateFields.data;
-  const session = await auth();
-  const userId = session?.user?.id;
   try {
-    const tsukeku = await prisma.tsukeku.create({
+    console.log(`try to submit tsukeku of ${userId} to ${hokkuId}`);
+    await prisma.tsukeku.create({
       data: {
         yonku: data.shiku,
         goku: data.goku,
@@ -107,13 +107,16 @@ export async function createTsukeku(
         },
       },
     });
+    console.log(`create tsukeku of ${userId} to ${hokkuId}`);
   } catch (error: unknown) {
+    console.error(error);
     return "送信に失敗しました";
   }
 }
 
 export async function createRenga(hokkuId: string, tsukekuId: string) {
   try {
+    console.log(`try to submit renga as ${hokkuId} and ${tsukekuId}`);
     await prisma.$transaction(async (prisma) => {
       await prisma.renga.create({
         data: {
@@ -138,12 +141,15 @@ export async function createRenga(hokkuId: string, tsukekuId: string) {
         },
       });
     });
+    console.log(`create renga as ${hokkuId} to ${tsukekuId}`);
   } catch (error: unknown) {
+    console.log(error);
     throw new Error("連歌の作成に失敗しました");
   }
 }
 
 export async function createLike(userId: string, rengaId: string) {
+  console.log(`try to submit like of ${userId} to ${rengaId}`);
   try {
     await prisma.like.create({
       data: {
@@ -151,6 +157,7 @@ export async function createLike(userId: string, rengaId: string) {
         rengaId: rengaId,
       },
     });
+    console.log(`create like of ${userId} to ${rengaId}`);
   } catch (error: unknown) {
     console.error(error);
     throw new Error("良の送信に失敗しました");

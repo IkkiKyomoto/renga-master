@@ -6,7 +6,6 @@ import styles from "./Card.module.css";
 import { useSession } from "next-auth/react";
 import CardLikeWrapper from "@/app/ui/cardLikeWrapper";
 
-
 export default function Card({
   kaminoku,
   shimonoku,

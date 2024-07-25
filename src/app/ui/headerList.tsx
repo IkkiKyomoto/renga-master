@@ -15,30 +15,39 @@ export default function HeaderList({
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const windowSize = useWindowSize();
-  const {open, setOpen} = useToggleDrawer();
+  const { open, setOpen } = useToggleDrawer();
   function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     if (windowSize.width < 768 && setOpen !== undefined) {
       console.log(open);
       setOpen(false);
     }
-
   }
   return (
     <ul className={` ${style.ul}`}>
       <li className={` ${style.li}`}>
-        <Link onClick={handleClick} href="/">トップ</Link>
+        <Link onClick={handleClick} href="/">
+          トップ
+        </Link>
       </li>
       <li className={` ${style.li}`}>
-        <Link onClick={handleClick}  href="/hokku">発句する</Link>
+        <Link onClick={handleClick} href="/hokku">
+          発句する
+        </Link>
       </li>
       <li className={` ${style.li}`}>
-        <Link onClick={handleClick}  href="/tsukeku">付句する</Link>
+        <Link onClick={handleClick} href="/tsukeku">
+          付句する
+        </Link>
       </li>
       <li className={` ${style.li}`}>
-        <Link onClick={handleClick}  href={`/my-page/${session?.user?.id}`}>マイページ</Link>
+        <Link onClick={handleClick} href={`/my-page/${session?.user?.id}`}>
+          マイページ
+        </Link>
       </li>
       <li className={` ${style.li}`}>
-        <Link onClick={handleClick}  href="/instruction">遊び方</Link>
+        <Link onClick={handleClick} href="/instruction">
+          遊び方
+        </Link>
       </li>
       <li className={` ${style.li}`}>
         <AuthButtons session={session} />

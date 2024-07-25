@@ -28,11 +28,12 @@ export default async function MyTsukekuList() {
       </h1>
       <ul className="flex flex-raw gap-6 grid grid-cols-4 md:grid-cols-6  lg:grid-cols-12">
         {hokkus.map((hokku, i) => {
-
           return (
             <li key={i}>
               <Link href={`/posted-tsukeku/${hokku.id}`}>
-                <div className="relative top--2 text-xl text-red-600 z-10">{hokku.tsukeku?.length}</div> 
+                <div className="relative top--2 text-xl text-red-600 z-10">
+                  {hokku.tsukeku?.length}
+                </div>
                 <HokkuCard
                   ikku={hokku.ikku}
                   niku={hokku.niku}
@@ -44,7 +45,7 @@ export default async function MyTsukekuList() {
           );
         })}
       </ul>
-      {hokkus.length === 0 && <p>未完成の発句はありません</p>}
+      {!errorMessage && hokkus.length === 0 && <p>未完成の発句はありません</p>}
       {errorMessage && <p>{errorMessage}</p>}
     </div>
   );

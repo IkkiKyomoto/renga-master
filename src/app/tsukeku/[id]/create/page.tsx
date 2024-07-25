@@ -4,8 +4,10 @@ import HokkuCard from "@/app/ui/tsukeku/hokkuCard";
 import TsukekuForm from "@/app/ui/tsukeku/tsukeku-form";
 import { useParams, useSearchParams } from "next/navigation";
 import { notFound } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function Page() {
+  const {data: session} = useSession();
   const searchParams = useSearchParams();
   const ikku = searchParams.get("ikku") as string;
   const niku = searchParams.get("niku") as string;
@@ -24,7 +26,7 @@ export default function Page() {
         description={description}
         isPosted={false}
       />
-      <TsukekuForm />
+      <TsukekuForm session={session}/>
     </div>
   );
 }

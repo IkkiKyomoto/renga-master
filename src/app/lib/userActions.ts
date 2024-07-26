@@ -11,6 +11,7 @@ import { randomUUID } from "crypto";
 import { getUser } from "./data";
 import { EmailNotVerifiedError } from "../error/emailNotVerifiedError";
 import { Token } from "@/app/lib/definitions";
+import { send } from "process";
 
 const FormScheme = z
   .object({
@@ -65,7 +66,8 @@ export async function authenticate(email: string, password: string) {
     throw new Error("ユーザーが見つかりません");
   }
   if (user.emailVerified === false) {
-    throw new EmailNotVerifiedError();
+    await sendVerificationEmail(email);
+    redirect('/login/not-verified?email=' + email);
   }
   await signIn("credentials", {
     redirect: false,

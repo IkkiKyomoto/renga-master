@@ -65,3 +65,5 @@ export type Token = {
   createdAt?: Date;
   updatedAt?: Date;
 };
+
+export   type status = "success" | "error" | "emailNotVerified";

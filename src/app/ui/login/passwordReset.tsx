@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import { toast } from "react-toastify";
@@ -6,7 +6,7 @@ import { passwordReset } from "@/app/lib/userActions";
 import { useRouter } from "next/navigation";
 
 export default function PasswordReset({ email }: { email: string }) {
-  const router = useRouter()
+  const router = useRouter();
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -15,7 +15,7 @@ export default function PasswordReset({ email }: { email: string }) {
     try {
       await passwordReset(email, password, passwordConfirm);
       toast.success("パスワードをリセットしました");
-      router.push('/login')
+      router.push("/login");
     } catch (error: any) {
       toast.error(error.message);
     }

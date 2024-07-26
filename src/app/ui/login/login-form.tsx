@@ -4,8 +4,7 @@
 import { authenticate } from "@/app/lib/userActions";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { sendVerificationEmail } from "@/app/lib/userActions";
-import Link from "next/link";
+import { status } from "@/app/lib/definitions";
 //import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
@@ -14,13 +13,24 @@ export default function LoginForm() {
   // const callbackUrl = searchParams.get("callbackUrl") || "/profile";
   //const [errorMessage, setErrorMessage] = useState<string | undefined>();
   const router = useRouter();
+  var status: status;
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     var isEmailNotVerified = false;
     event.preventDefault();
     const form = event.currentTarget;
+    const email = form.email.value;
+    const password = form.password.value
     try {
-      await authenticate(form.email.value, form.password.value);
-      toast.success("ログインしました");
+     status = await authenticate(email, password);
+      if (status === "success") {
+        toast.success("ログインしました");
+        router.push("/");
+      } else if (status === "emailNotVerified") {
+        toast.warning("メールアドレスが認証されていません");
+        router.push('/login/not-verified?email=' + email);
+      } else {
+        toast.error("ログインに失敗しました");
+      }
     } catch (error: any) {
       // console.log('error', error.type)
       // if (error.message === "メールアドレスが認証されていません") {

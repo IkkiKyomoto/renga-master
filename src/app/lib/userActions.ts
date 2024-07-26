@@ -11,7 +11,7 @@ import { randomUUID } from "crypto";
 import { getUser } from "./data";
 import { EmailNotVerifiedError } from "../error/emailNotVerifiedError";
 import { Token } from "@/app/lib/definitions";
-import { send } from "process";
+import { status } from "@/app/lib/definitions";
 
 const FormScheme = z
   .object({
@@ -60,22 +60,22 @@ const passwordFormScheme = z
   });
 
 export async function authenticate(email: string, password: string) {
-  const user = await getUser(email);
 
+
+  const user = await getUser(email);
   if (!user) {
-    throw new Error("ユーザーが見つかりません");
+    return 'error' as status
   }
   if (user.emailVerified === false) {
     await sendVerificationEmail(email);
-    redirect('/login/not-verified?email=' + email);
+    return 'emailNotVerified' as status
   }
   await signIn("credentials", {
     redirect: false,
     email: email,
     password: password,
   });
-
-  redirect("/");
+  return 'success' as status
 }
 
 export async function createUser(
@@ -263,7 +263,7 @@ export async function verifyPasswordResetToken(token: string) {
     return passwordResetToken.identifier;
   } catch (error) {
     console.error(error);
-    throw new Error('認証に失敗しました');
+    throw new Error("認証に失敗しました");
   }
 }
 

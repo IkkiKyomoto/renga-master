@@ -1,5 +1,5 @@
 import React from "react";
-import PasswordResetForm from "@/app/ui/login/pasword-reset-form"
+import PasswordResetForm from "@/app/ui/login/pasword-reset-form";
 
 export default function Page() {
   return (

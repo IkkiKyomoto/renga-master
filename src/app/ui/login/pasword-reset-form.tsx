@@ -10,12 +10,12 @@ export default function PasswordResetForm() {
     const form = event.currentTarget;
     const email = form.email.value;
     try {
-    await sendPasswordResetEmail(email);
-    toast.success("再設定メールを送信しました");
-  } catch (error: any) {
-    console.error(error);
-    toast.error("再設定メールの送信に失敗しました");
-  }
+      await sendPasswordResetEmail(email);
+      toast.success("再設定メールを送信しました");
+    } catch (error: any) {
+      console.error(error);
+      toast.error("再設定メールの送信に失敗しました");
+    }
   }
 
   return (

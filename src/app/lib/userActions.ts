@@ -65,7 +65,7 @@ export async function authenticate(email: string, password: string) {
     throw new Error("ユーザーが見つかりません");
   }
   if (user.emailVerified === false) {
-    throw new Error('メールアドレスが認証されていません');
+    throw new EmailNotVerifiedError();
   }
   await signIn("credentials", {
     redirect: false,

@@ -56,3 +56,12 @@ export type Like = {
   createdAt?: Date;
   updatedAt?: Date;
 };
+
+export type Token = {
+  id: string;
+  identifier: string;
+  expires: Date;
+  token: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+};

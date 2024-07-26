@@ -245,11 +245,11 @@ export async function verifyPasswordResetToken(token: string) {
           token: token,
         },
       });
-    await prisma.passwordResetToken.delete({
-      where: {
-        token: token,
-      },
-    });
+    // await prisma.passwordResetToken.delete({
+    //   where: {
+    //     token: token,
+    //   },
+    // });
     if (!passwordResetToken) {
       console.error("token not found");
       throw new Error("認証トークンが見つかりません");
@@ -261,7 +261,7 @@ export async function verifyPasswordResetToken(token: string) {
     return passwordResetToken.identifier;
   } catch (error) {
     console.error(error);
-    throw error;
+    throw new Error('認証に失敗しました');
   }
 }
 

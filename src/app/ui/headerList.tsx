@@ -5,6 +5,7 @@ import AuthButtons from "./AuthButtons";
 import { HeaderListStyle } from "@/app/ui/headerListStyle";
 import useWindowSize from "@/hooks/useWindowSize";
 import useToggleDrawer from "@/hooks/useToggleDrawer";
+import { toast } from "react-toastify";
 
 export default function HeaderList({
   session,
@@ -14,6 +15,11 @@ export default function HeaderList({
   style: HeaderListStyle;
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  function handleUnauthorizedLinkClick() {
+    if (!session) {
+      toast.info("ログインしてください");
+    }
+  }
   const windowSize = useWindowSize();
   const { open, setOpen } = useToggleDrawer();
   function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
@@ -29,17 +35,17 @@ export default function HeaderList({
           トップ
         </Link>
       </li>
-      <li className={` ${style.li}`}>
+      <li className={` ${style.li}`} onClick={handleUnauthorizedLinkClick}>
         <Link onClick={handleClick} href="/hokku">
           発句する
         </Link>
       </li>
-      <li className={` ${style.li}`}>
+      <li className={` ${style.li}`} onClick={handleUnauthorizedLinkClick}>
         <Link onClick={handleClick} href="/tsukeku">
           付句する
         </Link>
       </li>
-      <li className={` ${style.li}`}>
+      <li className={` ${style.li}`} onClick={handleUnauthorizedLinkClick}>
         <Link onClick={handleClick} href={`/my-page/${session?.user?.id}`}>
           マイページ
         </Link>

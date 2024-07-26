@@ -32,7 +32,7 @@ export const { auth, signIn, signOut } = NextAuth({
           //console.log('Credentials')
           const user = await getUser(email);
           if (!user) {
-            return null
+            return null;
           }
           const isPasswordMatched = passwordMatch(
             password,
@@ -42,7 +42,7 @@ export const { auth, signIn, signOut } = NextAuth({
           if (isPasswordMatched) {
             return user;
           }
-          console.log('passwords do not match');
+          console.log("passwords do not match");
           return null;
         }
         console.log("Invalid credentials");

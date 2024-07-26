@@ -11,6 +11,14 @@ export default function Page() {
         <LoginForm />
       </div>
       <div className="mt-6">
+        <Link
+          className="font-bold border border-b-black"
+          href={"/login/password-reset"}
+        >
+          パスワードを忘れた方はこちら
+        </Link>
+      </div>
+      <div className="mt-6">
         <Link className="font-bold border border-b-black" href="/register">
           新規登録する
         </Link>

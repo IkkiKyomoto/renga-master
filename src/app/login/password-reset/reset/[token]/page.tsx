@@ -9,7 +9,6 @@ export default async function Page({ params }: { params: { token: string } }) {
   var errorMessage: string | null = null;
   var email: string = '';
   var loading = true
-  console.log(params.token);
   try {
     email = await verifyPasswordResetToken(params.token);
     verified = true;

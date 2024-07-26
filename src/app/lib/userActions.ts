@@ -211,7 +211,7 @@ export async function sendPasswordResetEmail(email: string) {
   });
   const token = randomUUID().toString();
   try {
-    prisma.$transaction([
+    await prisma.$transaction([
       prisma.passwordResetToken.deleteMany({
         where: {
           identifier: email,
@@ -245,7 +245,7 @@ export async function verifyPasswordResetToken(token: string) {
           token: token,
         },
       });
-    prisma.passwordResetToken.delete({
+    await prisma.passwordResetToken.delete({
       where: {
         token: token,
       },

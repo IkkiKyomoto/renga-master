@@ -178,11 +178,11 @@ export async function verifyEmail(token: string) {
     }
     const email = verificationToken.identifier;
     await prisma.$transaction([
-      prisma.verificationToken.delete({
-        where: {
-          token: token,
-        },
-      }),
+      // prisma.verificationToken.delete({
+      //   where: {
+      //     token: token,
+      //   },
+      // }),
       prisma.user.update({
         where: {
           email: email,

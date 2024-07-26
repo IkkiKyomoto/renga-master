@@ -22,7 +22,7 @@ export default function LoginForm() {
       await authenticate(form.email.value, form.password.value);
       toast.success("ログインしました");
     } catch (error: any) {
-      console.log('error', error.message)
+      console.log('error', error.type)
       if (error.message === "メールアドレスが認証されていません") {
         toast.warning("メールアドレスが認証されていません");
         isEmailNotVerified = true;

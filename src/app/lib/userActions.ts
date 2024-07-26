@@ -65,7 +65,7 @@ export async function authenticate(email: string, password: string) {
     throw new Error("ユーザーが見つかりません");
   }
   if (user.emailVerified === false) {
-    throw new EmailNotVerifiedError();
+    throw new Error('メールアドレスが認証されていません');
   }
   await signIn("credentials", {
     redirect: false,
@@ -182,7 +182,7 @@ export async function verifyEmail(token: string) {
       //   where: {
       //     token: token,
       //   },
-      // }),
+      // }),f
       prisma.user.update({
         where: {
           email: email,

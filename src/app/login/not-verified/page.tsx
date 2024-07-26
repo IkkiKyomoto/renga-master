@@ -12,7 +12,6 @@ export default function Page({ params }: { params: { email: string } }) {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
     event.preventDefault();
-    console.log(params.email);
     if (!email) {
       toast.error("Eメールアドレスが見つかりません");
       return;

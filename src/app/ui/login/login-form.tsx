@@ -16,13 +16,13 @@ export default function LoginForm() {
   const router = useRouter();
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     var isEmailNotVerified = false;
-    console.log(event.target);
     event.preventDefault();
     const form = event.currentTarget;
     try {
       await authenticate(form.email.value, form.password.value);
       toast.success("ログインしました");
     } catch (error: any) {
+      console.log('error', error.type)
       if (error.message === "メールアドレスが認証されていません") {
         toast.warning("メールアドレスが認証されていません");
         isEmailNotVerified = true;

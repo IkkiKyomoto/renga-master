@@ -4,11 +4,13 @@ import "./ui/globals.css";
 import SomethingProvider from "./ui/somethingProvider";
 import { auth } from "@/auth";
 import Header from "@/app/ui/header";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "連歌ますたぁ",
   description: "連歌を作って遊ぶSNS",
 };
+import { AdsCard } from "./ui/adsCard";
 
 
 // export const LayoutContext = createContext<{
@@ -30,6 +32,10 @@ export default async function RootLayout({
           <Header session={session} />
           {children}
         </SomethingProvider>
+        <Suspense fallback={<div>loading...</div>}>
+
+        <AdsCard />
+        </Suspense>
       </body>
     </html>
   );

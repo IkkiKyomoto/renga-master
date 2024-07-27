@@ -32,10 +32,10 @@ export default async function RootLayout({
           <Header session={session} />
           {children}
         </SomethingProvider>
-        <Suspense fallback={<div>loading...</div>}>
+        {/* <Suspense fallback={<div>loading...</div>}>
 
         <AdsCard />
-        </Suspense>
+        </Suspense> */}
       </body>
     </html>
   );

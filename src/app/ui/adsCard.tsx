@@ -24,7 +24,7 @@ export const AdsCard = (props: Props) => {
   useEffect(() => {
     // 広告配信用のタグを挿入する
     const tag = document.createElement('script')
-    tag.src = 'https://adm.shinobi.jp/s/' + adMaxId
+    tag.src = 'https://adm.shinobi.jp/st/t.js' 
     
     tag.async = true
     document.body.appendChild(tag)
@@ -42,7 +42,9 @@ export const AdsCard = (props: Props) => {
   // スタイルはTailwindを使うことを前提としている
   return (
     <div
+    className='admax-ads'
       key={pathname}
+      style={{display:"inline-block;"}}
       data-admax-id={adMaxId}
       {...newProps}
     ></div>

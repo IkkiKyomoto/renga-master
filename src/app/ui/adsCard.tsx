@@ -1,5 +1,4 @@
-'use client'
-
+'use client';
 import React from 'react'
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation';
@@ -16,7 +15,7 @@ declare global {
 }
 
 export const AdsCard = (props: Props) => {
-  const adMaxId = 'xxx忍者AdmaxIDxxx'
+  const adMaxId = '73f9b3532b8286335b8153be8c3f4672'
   // 親コンポーネントでスタイルを設定できるようにする
   const { className, children, ...newProps } = props
 
@@ -25,7 +24,8 @@ export const AdsCard = (props: Props) => {
   useEffect(() => {
     // 広告配信用のタグを挿入する
     const tag = document.createElement('script')
-    tag.src = 'https://adm.shinobi.jp/s/73f9b3532b8286335b8153be8c3f4672'
+    tag.src = 'https://adm.shinobi.jp/s/' + adMaxId
+    
     tag.async = true
     document.body.appendChild(tag)
 
@@ -43,6 +43,7 @@ export const AdsCard = (props: Props) => {
   return (
     <div
       key={pathname}
+      data-admax-id={adMaxId}
       {...newProps}
     ></div>
   )

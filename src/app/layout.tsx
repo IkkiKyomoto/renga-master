@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import localFont from "next/font/local";
 import "./ui/globals.css";
 
 import SomethingProvider from "./ui/somethingProvider";
@@ -11,6 +9,7 @@ export const metadata: Metadata = {
   title: "連歌ますたぁ",
   description: "連歌を作って遊ぶSNS",
 };
+
 
 // export const LayoutContext = createContext<{
 //   setState: Dispatch<SetStateAction<Session | null>>

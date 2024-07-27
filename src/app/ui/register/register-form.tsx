@@ -11,6 +11,7 @@ export default function RegisterForm() {
     event.preventDefault();
 
     const form = event.currentTarget;
+    form.submitButton.disabled = true;
     try {
       await createUser(
         form.userName.value,
@@ -22,6 +23,7 @@ export default function RegisterForm() {
       router.push("/register/success?email=" + form.email.value);
     } catch (error: any) {
       toast.error(error.message);
+      form.submitButton.disabled = false;
     }
   }
   return (
@@ -67,6 +69,7 @@ export default function RegisterForm() {
           id="passwordConfirm"
         />
         <button
+        name="submitButton"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
           type="submit"
         >

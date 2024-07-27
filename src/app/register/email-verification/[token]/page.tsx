@@ -30,9 +30,11 @@ export default async function Page({ params }: { params: { token: string } }) {
             <p className="mb-4">
               メールアドレスの認証が完了しました。ログインが可能になります。
             </p>
-            <Link href="/login">
-              <a className="text-blue-500 hover:underline">ログインする</a>
+
+            <Link href="/login" className="font-bold border border-b-black">
+ログインする
             </Link>
+            
           </div>
         </div>
       )}

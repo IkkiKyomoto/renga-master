@@ -11,6 +11,7 @@ export default function TsukekuForm({ session }: { session: Session | null }) {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
+    form.submitButton.disabled = true;
     const hokkuId = params.id as string;
 
     const message = await createTsukeku(
@@ -25,6 +26,7 @@ export default function TsukekuForm({ session }: { session: Session | null }) {
       router.push("/tsukeku");
     } else {
       toast.error(message);
+      form.submitButton.disabled = false
     }
   }
   return (
@@ -61,21 +63,10 @@ export default function TsukekuForm({ session }: { session: Session | null }) {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
-        <div className="mb-4">
-          <label
-            htmlFor="tsukeku"
-            className="block text-black text-base font-bold mb-2"
-          >
-            説明
-          </label>
-          <textarea
-            name="description"
-            id="description"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          ></textarea>
-        </div>
+
         <button
           type="submit"
+          name="submitButton"
           className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           送信

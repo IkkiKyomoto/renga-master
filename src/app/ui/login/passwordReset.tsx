@@ -9,6 +9,7 @@ export default function PasswordReset({ email }: { email: string }) {
   const router = useRouter();
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    event.currentTarget.submitButton.disabled = true;
     const form = event.currentTarget;
     const password = form.password.value;
     const passwordConfirm = form.passwordConfirm.value;
@@ -17,6 +18,7 @@ export default function PasswordReset({ email }: { email: string }) {
       toast.success("パスワードをリセットしました");
       router.push("/login");
     } catch (error: any) {
+      form.submitButton.disabled = false;
       toast.error(error.message);
     }
   }
@@ -54,6 +56,7 @@ export default function PasswordReset({ email }: { email: string }) {
       </div>
       <input
         type="submit"
+        name="submitButton"
         value="パスワードをリセットする"
         className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 cursor-pointer"
       />

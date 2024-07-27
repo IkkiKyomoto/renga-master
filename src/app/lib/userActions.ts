@@ -213,6 +213,14 @@ export async function sendPasswordResetEmail(email: string) {
   });
   const token = randomUUID().toString();
   try {
+    const existEmail = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    })
+    if (!existEmail) {
+      throw new Error("メールアドレスが見つかりません")
+    }
     await prisma.$transaction([
       prisma.passwordResetToken.deleteMany({
         where: {

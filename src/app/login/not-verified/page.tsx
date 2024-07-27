@@ -5,13 +5,14 @@ import { sendVerificationEmail } from "@/app/lib/userActions";
 import { toast } from "react-toastify";
 import { useSearchParams } from "next/navigation";
 
-export default function Page({ params }: { params: { email: string } }) {
+export default function Page() {
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
   async function handleSubmit(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
     event.preventDefault();
+    event.currentTarget.disabled = true;
     if (!email) {
       toast.error("Eメールアドレスが見つかりません");
       return;
@@ -21,6 +22,7 @@ export default function Page({ params }: { params: { email: string } }) {
       toast.success("Eメールを再送信しました");
     } catch (error: any) {
       console.error(error);
+      event.currentTarget.disabled = false;
       toast.error("Eメールの再送信でエラーが発生しました");
     }
   }
@@ -35,6 +37,7 @@ export default function Page({ params }: { params: { email: string } }) {
             まだメールアドレスの認証が完了していません。登録したEメールに認証用のリンクが送信されますので、リンクより認証を完了してください。認証メールが届かない場合は下のボタンから再送信してください。
           </p>
           <button
+          name="submitButton"
             onClick={handleSubmit}
             className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700"
           >

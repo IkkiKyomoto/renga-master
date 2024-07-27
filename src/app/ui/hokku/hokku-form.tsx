@@ -11,7 +11,9 @@ export function HokkuForm({ session }: { session: Session | null }) {
   const router = useRouter();
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    
     const form = event.currentTarget;
+    form.submitButton.disabled = true;
     if (!session || !session.user || !session.user.id) {
       toast.error(
         "ユーザー情報が読み取れません。もう一度やり直すか再ログインをお願いします。",
@@ -31,6 +33,7 @@ export function HokkuForm({ session }: { session: Session | null }) {
       toast.success("投稿しました");
     } catch (error: any) {
       setErrorMessage(error.message);
+      form.submitButton.disabled = false;
     }
     router.push("/");
   }
@@ -83,23 +86,12 @@ export function HokkuForm({ session }: { session: Session | null }) {
           />
         </div>
         <div className="mb-6">
-          <label
-            htmlFor="description"
-            className="block text-black text-sm font-bold mb-2"
-          >
-            説明
-          </label>
-          <textarea
-            name="description"
-            id="description"
-            className="resize-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="*任意"
-            rows={3}
-          ></textarea>
+
         </div>
         <div className="flex items-center justify-between">
           <button
             type="submit"
+            name="submitButton"
             className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             送信

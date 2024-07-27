@@ -23,6 +23,7 @@ export default function RengaCompleteForm({
   }
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    event.currentTarget.submitButton.disabled = true;
     console.log(selected);
     if (!selected) {
       toast.error("連歌を選択してください");
@@ -33,6 +34,7 @@ export default function RengaCompleteForm({
     } catch (error: any) {
       console.log(error);
       toast.error(error.message);
+      event.currentTarget.submitButton.disabled = false
       return;
     }
     toast.success("連歌が完成しました！");
@@ -65,6 +67,7 @@ export default function RengaCompleteForm({
       <div>
         {tsukekus.length > 0 ? (
           <button
+          name="submitButton"
             type="submit"
             className="mt-10 mb-10 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >

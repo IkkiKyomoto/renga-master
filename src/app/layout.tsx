@@ -30,6 +30,7 @@ export default async function RootLayout({
           <Header session={session} />
           {children}
         </SomethingProvider>
+        <script src="https://adm.shinobi.jp/s/39d3db9557145a23f99ff1903a489406"></script>
       </body>
     </html>
   );

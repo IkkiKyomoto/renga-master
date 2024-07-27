@@ -16,6 +16,7 @@ export default function LoginForm() {
   var status: status;
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    event.currentTarget.submitButton.disabled = true;
     const form = event.currentTarget;
     const email = form.email.value;
     const password = form.password.value
@@ -31,6 +32,7 @@ export default function LoginForm() {
         toast.error("ログインに失敗しました");
       }
     } catch (error: any) {
+      form.submitButton.disabled = false;
       // console.log('error', error.type)
       // if (error.message === "メールアドレスが認証されていません") {
       //   toast.warning("メールアドレスが認証されていません");
@@ -77,6 +79,7 @@ export default function LoginForm() {
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight focus:outline-none focus:shadow-outline"
         />
         <button
+        name="submitButton"
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
         >

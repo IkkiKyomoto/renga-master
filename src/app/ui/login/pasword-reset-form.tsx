@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 export default function PasswordResetForm() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    event.currentTarget.submitButton.disabled = true;
     const form = event.currentTarget;
     const email = form.email.value;
     try {
@@ -15,6 +16,7 @@ export default function PasswordResetForm() {
     } catch (error: any) {
       console.error(error);
       toast.error("再設定メールの送信に失敗しました");
+      form.submitButton.disabled = false;
     }
   }
 
@@ -35,7 +37,7 @@ export default function PasswordResetForm() {
         />
       </div>
       <input
-        name="submit"
+        name="submitButton"
         type="submit"
         value="再設定メールを送信する"
         className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 cursor-pointer"

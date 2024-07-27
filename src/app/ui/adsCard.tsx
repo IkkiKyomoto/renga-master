@@ -32,7 +32,7 @@ export const AdsCard = (props: Props) => {
     try {
       ;(globalThis.admaxads = window.admaxads || []).push({
         admax_id: adMaxId,
-        type: 'switch'
+        type: 'banner'
       })
     } catch (error) {
       console.error(error)

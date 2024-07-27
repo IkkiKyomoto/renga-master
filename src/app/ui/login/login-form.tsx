@@ -15,7 +15,6 @@ export default function LoginForm() {
   const router = useRouter();
   var status: status;
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    var isEmailNotVerified = false;
     event.preventDefault();
     const form = event.currentTarget;
     const email = form.email.value;

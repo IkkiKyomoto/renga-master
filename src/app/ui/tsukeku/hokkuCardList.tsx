@@ -6,7 +6,6 @@ import HokkuCard from "@/app/ui/tsukeku/hokkuCard";
 import Link from "next/link";
 import { auth } from "@/auth";
 import { getHokkus } from "@/app/lib/data";
-import { toast } from "react-toastify";
 import { Suspense } from "react";
 
 export default async function HokkuCardList() {

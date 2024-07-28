@@ -33,7 +33,7 @@ export default function RengaCompleteForm({
       await createRenga(hokkuId, selected);
     } catch (error: any) {
       console.log(error);
-      toast.error(error.message);
+      toast.error('付句の投稿に失敗しました');
       event.currentTarget.submitButton.disabled = false
       return;
     }

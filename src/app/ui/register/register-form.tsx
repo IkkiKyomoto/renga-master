@@ -22,7 +22,7 @@ export default function RegisterForm() {
       await sendVerificationEmail(form.email.value);
       router.push("/register/success?email=" + form.email.value);
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error('登録に失敗しました');
       form.submitButton.disabled = false;
     }
   }

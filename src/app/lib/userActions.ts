@@ -137,11 +137,11 @@ export async function sendVerificationEmail(email: string) {
   );
   try {
     await prisma.$transaction([
-      prisma.verificationToken.deleteMany({
-        where: {
-          identifier: email,
-        },
-      }),
+      // prisma.verificationToken.deleteMany({
+      //   where: {
+      //     identifier: email,
+      //   },
+      // }),
       prisma.verificationToken.create({
         data: {
           token: token,
@@ -222,11 +222,11 @@ export async function sendPasswordResetEmail(email: string) {
       throw new Error("メールアドレスが見つかりません")
     }
     await prisma.$transaction([
-      prisma.passwordResetToken.deleteMany({
-        where: {
-          identifier: email,
-        },
-      }),
+      // prisma.passwordResetToken.deleteMany({
+      //   where: {
+      //     identifier: email,
+      //   },
+      // }),
       prisma.passwordResetToken.create({
         data: {
           token: token,

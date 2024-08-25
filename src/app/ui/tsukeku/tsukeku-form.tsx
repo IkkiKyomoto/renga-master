@@ -19,6 +19,12 @@ export default function TsukekuForm({ session }: { session: Session | null }) {
       );
       return;
     }
+    if (!form.shiku.value || !form.tsukeku.value) {
+      toast.error("全ての句を入力してください");
+      form.submitButton.disabled = false;
+      return;
+    }
+
     try {
       await createTsukeku(
         form.shiku.value,

@@ -22,7 +22,7 @@ export default function RegisterForm() {
       await sendVerificationEmail(form.email.value);
       router.push("/register/success?email=" + form.email.value);
     } catch (error: any) {
-      toast.error('登録に失敗しました');
+      toast.error("登録に失敗しました");
       form.submitButton.disabled = false;
     }
   }
@@ -69,7 +69,7 @@ export default function RegisterForm() {
           id="passwordConfirm"
         />
         <button
-        name="submitButton"
+          name="submitButton"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
           type="submit"
         >

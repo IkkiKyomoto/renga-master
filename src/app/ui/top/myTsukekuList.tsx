@@ -1,6 +1,6 @@
 "use server";
 
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { auth } from "@/auth";
 import { Hokku } from "@/app/lib/definitions";
 import { getHokkusByUserId } from "@/app/lib/data";
@@ -9,7 +9,11 @@ import HokkuCard from "../tsukeku/hokkuCard";
 import { color } from "@/color";
 import { Session } from "next-auth";
 
-export default async function MyTsukekuList({session}: {session: Session | null}) {
+export default async function MyTsukekuList({
+  session,
+}: {
+  session: Session | null;
+}) {
   // マイ付句リストを表示
   // const [hokkus, setHokkus] = useState<Hokku[]>([]);
   // const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -28,7 +32,7 @@ export default async function MyTsukekuList({session}: {session: Session | null}
     return <p>ユーザー情報が読み取れません</p>;
   }
   var hokkus: Hokku[] = [];
-  var errorMessage:String = ""
+  var errorMessage: String = "";
   try {
     hokkus = await getHokkusByUserId(session.user.id);
   } catch (error: any) {

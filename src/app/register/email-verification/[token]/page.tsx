@@ -32,9 +32,8 @@ export default async function Page({ params }: { params: { token: string } }) {
             </p>
 
             <Link href="/login" className="font-bold border border-b-black">
-ログインする
+              ログインする
             </Link>
-            
           </div>
         </div>
       )}

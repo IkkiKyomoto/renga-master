@@ -1,6 +1,6 @@
 "use server";
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Hokku } from "@/app/lib/definitions";
 import HokkuCard from "@/app/ui/tsukeku/hokkuCard";
@@ -30,7 +30,6 @@ export default async function HokkuCardList() {
   } catch (error: any) {
     errorMessage = error.message;
   }
-
 
   return (
     <div>

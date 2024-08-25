@@ -33,8 +33,8 @@ export default function RengaCompleteForm({
       await createRenga(hokkuId, selected);
     } catch (error: any) {
       console.log(error);
-      toast.error('付句の投稿に失敗しました');
-      event.currentTarget.submitButton.disabled = false
+      toast.error("付句の投稿に失敗しました");
+      event.currentTarget.submitButton.disabled = false;
       return;
     }
     toast.success("連歌が完成しました！");
@@ -67,7 +67,7 @@ export default function RengaCompleteForm({
       <div>
         {tsukekus.length > 0 ? (
           <button
-          name="submitButton"
+            name="submitButton"
             type="submit"
             className="mt-10 mb-10 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >

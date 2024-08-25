@@ -37,7 +37,7 @@ export default function Page() {
             まだメールアドレスの認証が完了していません。登録したEメールに認証用のリンクが送信されますので、リンクより認証を完了してください。認証メールが届かない場合は下のボタンから再送信してください。
           </p>
           <button
-          name="submitButton"
+            name="submitButton"
             onClick={handleSubmit}
             className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700"
           >

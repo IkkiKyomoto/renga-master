@@ -13,20 +13,26 @@ export default function TsukekuForm({ session }: { session: Session | null }) {
     const form = event.currentTarget;
     form.submitButton.disabled = true;
     const hokkuId = params.id as string;
+    if (!session || !session.user || !session.user.id) {
+      toast.error(
+        "ユーザー情報が読み取れません。もう一度やり直すか再ログインをお願いします。",
+      );
+      return;
+    }
+    try {
+      await createTsukeku(
+        form.shiku.value,
+        form.tsukeku.value,
+        "",
+        hokkuId,
+        session.user.id as string,
+      );
 
-    const message = await createTsukeku(
-      form.shiku.value,
-      form.tsukeku.value,
-      form.description.value,
-      hokkuId,
-      session?.user?.id as string,
-    );
-    if (message === undefined) {
       toast.success("送信しました");
-      router.push("/tsukeku");
-    } else {
-      toast.error(message);
-      form.submitButton.disabled = false
+      router.push("/");
+    } catch (error: any) {
+      toast.error(error.message);
+      form.submitButton.disabled = false;
     }
   }
   return (

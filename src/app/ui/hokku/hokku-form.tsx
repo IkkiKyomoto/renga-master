@@ -12,7 +12,6 @@ export function HokkuForm({ session }: { session: Session | null }) {
   const router = useRouter();
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    
     const form = event.currentTarget;
     // ボタンを無効化
     form.submitButton.disabled = true;
@@ -22,7 +21,7 @@ export function HokkuForm({ session }: { session: Session | null }) {
       );
       return;
     }
-    
+
     // toast.error("エラーが発生しました。サインアウトします")
     // await logout()
     // バリデーション
@@ -36,14 +35,13 @@ export function HokkuForm({ session }: { session: Session | null }) {
         form.shoku.value,
         form.niku.value,
         form.sanku.value,
-        "",//form.description.value,
+        "", //form.description.value,
         session.user.id,
       );
       toast.success("投稿しました");
       router.push("/");
     } catch (error: any) {
       setErrorMessage(error.message);
-      
     }
     form.submitButton.disabled = false;
   }
@@ -53,9 +51,9 @@ export function HokkuForm({ session }: { session: Session | null }) {
         onSubmit={handleSubmit}
         className="w-full max-w-lg bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
-                {errorMessage && (
-        <div className="text-red-500 text-xs italic">{errorMessage}</div>
-      )}
+        {errorMessage && (
+          <div className="text-red-500 text-xs italic">{errorMessage}</div>
+        )}
         <div className="mb-4">
           <label
             htmlFor="shoku"
@@ -98,9 +96,7 @@ export function HokkuForm({ session }: { session: Session | null }) {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
-        <div className="mb-6">
-
-        </div>
+        <div className="mb-6"></div>
         <div className="flex items-center justify-between">
           <button
             type="submit"

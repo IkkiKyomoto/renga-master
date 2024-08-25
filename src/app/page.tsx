@@ -11,12 +11,12 @@ export default async function Home() {
       <div className="flex flex-col items-center justify-between">
         {session && (
           <div className="">
-            <MyTsukekuList session={session}/>
+            <MyTsukekuList session={session} />
           </div>
         )}
         <div className="md:flex mt-6 ">
-          <NewCards session={session}/>
-          <RankingCards session={session}/>
+          <NewCards session={session} />
+          <RankingCards session={session} />
         </div>
       </div>
     </main>

@@ -85,7 +85,8 @@ export async function createTsukeku(
     goku,
   });
   if (!validateFields.success) {
-    return validateFields.error.errors[0].message;
+    //return validateFields.error.errors[0].message;
+    throw new Error("付句を完成させてください");
   }
   const data = validateFields.data;
   try {
@@ -110,7 +111,7 @@ export async function createTsukeku(
     console.log(`create tsukeku of ${userId} to ${hokkuId}`);
   } catch (error: unknown) {
     console.error(error);
-    return "送信に失敗しました";
+    throw new Error("付句の作成に失敗しました");
   }
 }
 

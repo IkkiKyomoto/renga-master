@@ -19,15 +19,15 @@ export default function LoginForm() {
     event.currentTarget.submitButton.disabled = true;
     const form = event.currentTarget;
     const email = form.email.value;
-    const password = form.password.value
+    const password = form.password.value;
     try {
-     status = await authenticate(email, password);
+      status = await authenticate(email, password);
       if (status === "success") {
         toast.success("ログインしました");
         router.push("/");
       } else if (status === "emailNotVerified") {
         toast.warning("メールアドレスが認証されていません");
-        router.push('/login/not-verified?email=' + email);
+        router.push("/login/not-verified?email=" + email);
       } else {
         toast.error("ログインに失敗しました");
       }
@@ -79,7 +79,7 @@ export default function LoginForm() {
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight focus:outline-none focus:shadow-outline"
         />
         <button
-        name="submitButton"
+          name="submitButton"
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
         >

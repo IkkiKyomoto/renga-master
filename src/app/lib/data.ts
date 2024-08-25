@@ -1,4 +1,4 @@
-'use server'
+"use server";
 
 import prisma from "@/app/lib/prisma";
 import { Hokku, Tsukeku, User } from "@/app/lib/definitions";

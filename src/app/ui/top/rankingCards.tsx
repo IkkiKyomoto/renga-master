@@ -6,27 +6,31 @@ import { Session } from "next-auth";
 import CardList from "../cardList";
 import { color } from "@/color";
 
-export default async function RankingCards({session}: {session: Session | null}) {
+export default async function RankingCards({
+  session,
+}: {
+  session: Session | null;
+}) {
   const num = 12;
   var errorMessage: string | null = null;
   var rengas: Renga[] = [];
-//   const [rengas, setRengas] = useState<Renga[]>([]);
-//   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-//   useEffect(() => {
-//     getRengasByGoodForWeek(num)
-//       .then((rengas) => {
-//         setRengas(rengas);
-//       })
-//       .catch((error: any) => {
-//         setErrorMessage(error.message);
-//       });
-//   }, []
-// )
-try {
-  rengas = await getRengasByGoodForWeek(num);
-} catch (error:any) {
-  errorMessage = error.message;
-}
+  //   const [rengas, setRengas] = useState<Renga[]>([]);
+  //   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  //   useEffect(() => {
+  //     getRengasByGoodForWeek(num)
+  //       .then((rengas) => {
+  //         setRengas(rengas);
+  //       })
+  //       .catch((error: any) => {
+  //         setErrorMessage(error.message);
+  //       });
+  //   }, []
+  // )
+  try {
+    rengas = await getRengasByGoodForWeek(num);
+  } catch (error: any) {
+    errorMessage = error.message;
+  }
 
   return (
     <div className={`bg-white p-6 m-6 w-80 lg:w-96 ${color["card-border"]}`}>

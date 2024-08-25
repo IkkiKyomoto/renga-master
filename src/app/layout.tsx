@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 };
 import { AdsCard } from "./ui/adsCard";
 
-
 // export const LayoutContext = createContext<{
 //   setState: Dispatch<SetStateAction<Session | null>>
 //   state: Session | null

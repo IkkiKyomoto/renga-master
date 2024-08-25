@@ -59,22 +59,20 @@ const passwordFormScheme = z
   });
 
 export async function authenticate(email: string, password: string) {
-
-
   const user = await getUser(email);
   if (!user) {
-    return 'error' as status
+    return "error" as status;
   }
   if (user.emailVerified === false) {
     await sendVerificationEmail(email);
-    return 'emailNotVerified' as status
+    return "emailNotVerified" as status;
   }
   await signIn("credentials", {
     redirect: false,
     email: email,
     password: password,
   });
-  return 'success' as status
+  return "success" as status;
 }
 
 export async function createUser(
@@ -216,8 +214,9 @@ export async function sendPasswordResetEmail(email: string) {
       where: {
         email: email,
       },
-    })
-    if (!existEmail) {}
+    });
+    if (!existEmail) {
+    }
     await prisma.$transaction([
       prisma.passwordResetToken.deleteMany({
         where: {

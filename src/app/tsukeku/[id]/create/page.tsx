@@ -2,7 +2,6 @@
 
 import HokkuCard from "@/app/ui/tsukeku/hokkuCard";
 import TsukekuForm from "@/app/ui/tsukeku/tsukeku-form";
-import { useSearchParams } from "next/navigation";
 import { notFound } from "next/navigation";
 import { auth } from "@/auth";
 import { Suspense } from "react";
@@ -10,7 +9,7 @@ import { Suspense } from "react";
 export default async function Page({ params }: { params: { ikku: string; niku: string, sanku:string, description:string } }) {
   const session = await auth();
 
-
+  console.log(params)
   if (!(params.ikku && params.niku && params.sanku)) {
     notFound();
   }

@@ -3,7 +3,6 @@
 import Link from "next/link";
 
 import HeaderList from "@/app/ui/headerList";
-import { useSession } from "next-auth/react";
 import useWindowSize from "@/hooks/useWindowSize";
 import DrawerComponentHeader from "./drawerComponentHeader";
 import { pcStyle } from "@/app/ui/headerListStyle";

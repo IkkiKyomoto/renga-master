@@ -5,9 +5,7 @@ import { Drawer } from "@mui/material";
 import { Button } from "@mui/material";
 import useToggleDrawer from "@/hooks/useToggleDrawer";
 import { Session } from "next-auth";
-
 import Link from "next/link";
-import AuthButtons from "./AuthButtons";
 import { spStyle } from "./headerListStyle";
 import { LoginButton } from "@/app/ui/buttons/loginButton";
 import { RegisterButton } from "@/app/ui/buttons/registerButton";

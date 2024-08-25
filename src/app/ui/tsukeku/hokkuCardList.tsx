@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import React, {useEffect, useState} from "react";
 import { useSession } from "next-auth/react";
@@ -9,27 +9,27 @@ import { auth } from "@/auth";
 import { getHokkus } from "@/app/lib/data";
 import { Suspense } from "react";
 
-export default function HokkuCardList() {
-  const {data: session} = useSession();
+export default async function HokkuCardList() {
+  const session = await auth();
   const user = session?.user;
-  const [hokkus, setHokkus] = useState<Hokku[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  useEffect(() => {
-    getHokkus()
-      .then((hokkus) => {
-        setHokkus(hokkus);
-      })
-      .catch((error: any) => {
-        setErrorMessage(error.message);
-      });
-  }, []);
-  // var hokkus: Hokku[] = [];
-  // var errorMessage;
-  // try {
-  //   hokkus = await getHokkus();
-  // } catch (error: any) {
-  //   errorMessage = error.message;
-  // }
+  // const [hokkus, setHokkus] = useState<Hokku[]>([]);
+  // const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  // useEffect(() => {
+  //   getHokkus()
+  //     .then((hokkus) => {
+  //       setHokkus(hokkus);
+  //     })
+  //     .catch((error: any) => {
+  //       setErrorMessage(error.message);
+  //     });
+  // }, []);
+  var hokkus: Hokku[] = [];
+  var errorMessage;
+  try {
+    hokkus = await getHokkus();
+  } catch (error: any) {
+    errorMessage = error.message;
+  }
 
 
   return (

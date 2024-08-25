@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import React, {useState, useEffect} from "react";
 import { auth } from "@/auth";
@@ -9,26 +9,31 @@ import HokkuCard from "../tsukeku/hokkuCard";
 import { color } from "@/color";
 import { Session } from "next-auth";
 
-export default function MyTsukekuList({session}: {session: Session}) {
+export default async function MyTsukekuList({session}: {session: Session | null}) {
   // マイ付句リストを表示
-  const [hokkus, setHokkus] = useState<Hokku[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  // ユーザーIDで付句を取得
-  useEffect(() => {
-    getHokkusByUserId(session?.user?.id as string)
-      .then((hokkus) => {
-        setHokkus(hokkus);
-      })
-      .catch((error: any) => {
-        // エラー発生時はエラーメッセージを表示
-        setErrorMessage(error.message);
-      });
-  }, []);
-  // try {
-  //   hokkus = await getHokkusByUserId(session.user.id);
-  // } catch (error: any) {
-  //   errorMessage = error.message;
-  // }
+  // const [hokkus, setHokkus] = useState<Hokku[]>([]);
+  // const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  // // ユーザーIDで付句を取得
+  // useEffect(() => {
+  //   getHokkusByUserId(session?.user?.id as string)
+  //     .then((hokkus) => {
+  //       setHokkus(hokkus);
+  //     })
+  //     .catch((error: any) => {
+  //       // エラー発生時はエラーメッセージを表示
+  //       setErrorMessage(error.message);
+  //     });
+  // }, []);
+  if (!session || !session.user || !session.user.id) {
+    return <p>ユーザー情報が読み取れません</p>;
+  }
+  var hokkus: Hokku[] = [];
+  var errorMessage:String = ""
+  try {
+    hokkus = await getHokkusByUserId(session.user.id);
+  } catch (error: any) {
+    errorMessage = error.message;
+  }
 
   return (
     <div className={`md:w-2010 bg-white p-6 ${color["card-border"]}`}>

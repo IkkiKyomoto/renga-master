@@ -5,7 +5,6 @@ import { User } from "@/app/lib/definitions";
 export default async function UserInfo({ userId }: { userId: string }) {
   let user: User | null = null;
   var userInfoGetError;
-  console.log(userId);
   try {
     user = await getUserById(userId);
   } catch (error) {

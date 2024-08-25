@@ -1,13 +1,14 @@
-"use client";
+"use server";
 
 import HokkuCard from "@/app/ui/tsukeku/hokkuCard";
 import TsukekuForm from "@/app/ui/tsukeku/tsukeku-form";
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { notFound } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { auth } from "@/auth";
+import { Suspense } from "react";
 
-export default function Page() {
-  const { data: session } = useSession();
+export default async function Page() {
+  const session = await auth();
   const searchParams = useSearchParams();
   const ikku = searchParams.get("ikku") as string;
   const niku = searchParams.get("niku") as string;
@@ -19,14 +20,18 @@ export default function Page() {
   }
   return (
     <div className="flex flex-col gap-6 items-center justify-center mb-12">
-      <HokkuCard
-        ikku={ikku}
-        niku={niku}
-        sanku={sanku}
-        description={description}
-        isPosted={false}
-      />
-      <TsukekuForm session={session} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <HokkuCard
+          ikku={ikku}
+          niku={niku}
+          sanku={sanku}
+          description={description}
+          isPosted={false}
+        />
+      </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
+        <TsukekuForm session={session} />
+      </Suspense>
     </div>
   );
 }

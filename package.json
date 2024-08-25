@@ -34,6 +34,7 @@
     "react-dom": "19.0.0-rc-df5f2736-20240712",
     "react-email": "^2.1.6",
     "react-toastify": "^10.0.5",
+    "renga-master": "link:",
     "resend": "^3.5.0",
     "styled-components": "^6.1.12",
     "styles": "link:@mui/material/styles",

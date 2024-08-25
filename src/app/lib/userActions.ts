@@ -11,6 +11,7 @@ import { randomUUID } from "crypto";
 import { getUser } from "./data";
 import { Token } from "@/app/lib/definitions";
 import { status } from "@/app/lib/definitions";
+import { User } from "next-auth";
 
 const FormScheme = z
   .object({
@@ -293,5 +294,23 @@ export async function passwordReset(
   } catch (error) {
     console.error(error);
     throw new Error("パスワードのリセットに失敗しました");
+  }
+}
+
+export async function confirmUser(email: string) {
+  try {
+    const user: User | null = await prisma.user.findFirst({
+      where: {
+        email: email,
+      },
+    });
+    if (user) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error(error);
+    throw new Error("ユーザーの確認に失敗しました");
   }
 }

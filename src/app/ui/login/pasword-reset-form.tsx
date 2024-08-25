@@ -1,16 +1,23 @@
 "use client";
 
 import React from "react";
-import { sendPasswordResetEmail } from "@/app/lib/userActions";
+import { sendPasswordResetEmail, confirmUser } from "@/app/lib/userActions";
 import { toast } from "react-toastify";
 
+// パスワード再設定フォーム
 export default function PasswordResetForm() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    event.currentTarget.submitButton.disabled = true;
     const form = event.currentTarget;
+    form.submitButton.disabled = true;
     const email = form.email.value;
     try {
+      const isUser = await confirmUser(email)
+      if (!isUser) {
+        toast.error("アカウントが見つかりません");
+        form.submitButton.disabled = false;
+        return;
+      }
       await sendPasswordResetEmail(email);
       toast.success("再設定メールを送信しました");
     } catch (error: any) {

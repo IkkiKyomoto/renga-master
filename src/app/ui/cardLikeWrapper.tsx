@@ -20,21 +20,26 @@ export default function CardLikeWrapper({
   const { data: session } = useSession();
   const router = useRouter();
 
-  async function handleClick() {
+  async function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+
+
     if (!isLikedisable) {
+      isLikedisable = true;
       try {
         const userId = session?.user?.id as string;
         await createLike(userId, rengaId);
         router.refresh();
       } catch (error) {
+        isLikedisable = false;
         toast.error("良の送信に失敗しました");
       }
     }
   }
   return (
-    <div className="" onClick={handleClick}>
+    <button id="button" className="" onClick={handleClick}>
       {children}
       <p className="text-center text-xs">{likeNum}</p>
-    </div>
+    </button>
   );
 }

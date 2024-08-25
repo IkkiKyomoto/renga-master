@@ -41,9 +41,10 @@ export function HokkuForm({ session }: { session: Session | null }) {
       toast.success("投稿しました");
       router.push("/");
     } catch (error: any) {
+      form.submitButton.disabled = false;
       setErrorMessage(error.message);
     }
-    form.submitButton.disabled = false;
+    
   }
   return (
     <div className="flex justify-center items-center ">

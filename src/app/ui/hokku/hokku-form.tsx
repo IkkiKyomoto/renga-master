@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { Session } from "next-auth";
 
+//　発句作成フォーム
 export function HokkuForm({ session }: { session: Session | null }) {
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
   const router = useRouter();
@@ -13,6 +14,7 @@ export function HokkuForm({ session }: { session: Session | null }) {
     event.preventDefault();
     
     const form = event.currentTarget;
+    // ボタンを無効化
     form.submitButton.disabled = true;
     if (!session || !session.user || !session.user.id) {
       toast.error(
@@ -20,22 +22,30 @@ export function HokkuForm({ session }: { session: Session | null }) {
       );
       return;
     }
+    
     // toast.error("エラーが発生しました。サインアウトします")
     // await logout()
+    // バリデーション
+    if (!form.shoku.value || !form.niku.value || !form.sanku.value) {
+      setErrorMessage("全ての句を入力してください");
+      form.submitButton.disabled = false;
+      return;
+    }
     try {
       await createHokku(
         form.shoku.value,
         form.niku.value,
         form.sanku.value,
-        form.description.value,
+        "",//form.description.value,
         session.user.id,
       );
       toast.success("投稿しました");
+      router.push("/");
     } catch (error: any) {
       setErrorMessage(error.message);
-      form.submitButton.disabled = false;
+      
     }
-    router.push("/");
+    form.submitButton.disabled = false;
   }
   return (
     <div className="flex justify-center items-center ">
@@ -43,6 +53,9 @@ export function HokkuForm({ session }: { session: Session | null }) {
         onSubmit={handleSubmit}
         className="w-full max-w-lg bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
+                {errorMessage && (
+        <div className="text-red-500 text-xs italic">{errorMessage}</div>
+      )}
         <div className="mb-4">
           <label
             htmlFor="shoku"
@@ -98,9 +111,6 @@ export function HokkuForm({ session }: { session: Session | null }) {
           </button>
         </div>
       </form>
-      {errorMessage && (
-        <div className="text-red-500 text-xs italic">{errorMessage}</div>
-      )}
     </div>
   );
 }

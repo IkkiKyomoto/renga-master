@@ -1,6 +1,7 @@
 "use server";
 
-import React from "react";
+import React, {useEffect, useState} from "react";
+import { useSession } from "next-auth/react";
 import { Hokku } from "@/app/lib/definitions";
 import HokkuCard from "@/app/ui/tsukeku/hokkuCard";
 import Link from "next/link";
@@ -11,6 +12,17 @@ import { Suspense } from "react";
 export default async function HokkuCardList() {
   const session = await auth();
   const user = session?.user;
+  // const [hokkus, setHokkus] = useState<Hokku[]>([]);
+  // const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  // useEffect(() => {
+  //   getHokkus()
+  //     .then((hokkus) => {
+  //       setHokkus(hokkus);
+  //     })
+  //     .catch((error: any) => {
+  //       setErrorMessage(error.message);
+  //     });
+  // }, []);
   var hokkus: Hokku[] = [];
   var errorMessage;
   try {
@@ -18,6 +30,7 @@ export default async function HokkuCardList() {
   } catch (error: any) {
     errorMessage = error.message;
   }
+
 
   return (
     <div>

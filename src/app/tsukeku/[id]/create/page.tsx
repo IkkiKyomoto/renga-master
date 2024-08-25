@@ -5,22 +5,22 @@ import TsukekuForm from "@/app/ui/tsukeku/tsukeku-form";
 import { notFound } from "next/navigation";
 import { auth } from "@/auth";
 import { Suspense } from "react";
+import { getHokkuById } from "@/app/lib/data";
 
-export default async function Page({ params }: { params: { ikku: string; niku: string, sanku:string, description:string } }) {
+export default async function Page({ params }: { params: {id: string } }) {
   const session = await auth();
-
-  console.log(params)
-  if (!(params.ikku && params.niku && params.sanku)) {
+  const hokku = await getHokkuById(params.id);
+  if (!hokku) {
     notFound();
   }
   return (
     <div className="flex flex-col gap-6 items-center justify-center mb-12">
       <Suspense fallback={<div>Loading...</div>}>
         <HokkuCard
-          ikku={params.ikku}
-          niku={params.niku}
-          sanku={params.sanku}
-          description={params.description}
+          ikku={hokku.ikku}
+          niku={hokku.niku}
+          sanku={hokku.sanku}
+          description={hokku.description}
           isPosted={false}
         />
       </Suspense>

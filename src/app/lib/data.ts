@@ -1,3 +1,5 @@
+'use server'
+
 import prisma from "@/app/lib/prisma";
 import { Hokku, Tsukeku, User } from "@/app/lib/definitions";
 import { Renga } from "@/app/lib/definitions";

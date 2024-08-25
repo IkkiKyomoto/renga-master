@@ -9,7 +9,6 @@ import { signOut } from "@/auth";
 import { createTransport } from "nodemailer";
 import { randomUUID } from "crypto";
 import { getUser } from "./data";
-import { EmailNotVerifiedError } from "../error/emailNotVerifiedError";
 import { Token } from "@/app/lib/definitions";
 import { status } from "@/app/lib/definitions";
 

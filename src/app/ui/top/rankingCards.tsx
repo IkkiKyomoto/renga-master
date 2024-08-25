@@ -1,23 +1,28 @@
-"use server";
+"use client";
 
+import { useState, useEffect } from "react";
 import { Renga } from "@/app/lib/definitions";
 import { getRengasByGoodForWeek } from "@/app/lib/data";
-
-import { auth } from "@/auth";
+import { Session } from "next-auth";
 import CardList from "../cardList";
 import { color } from "@/color";
 
-export default async function RankingCards() {
+export default function RankingCards({session}: {session: Session | null}) {
   const num = 12;
-  var errorMessage: string | null = null;
-  var rengas: Renga[] = [];
-  try {
-    rengas = await getRengasByGoodForWeek(num);
-  } catch (error: any) {
-    console.log(error);
-    errorMessage = error.message;
-  }
-  const session = await auth();
+  // var errorMessage: string | null = null;
+  // var rengas: Renga[] = [];
+  const [rengas, setRengas] = useState<Renga[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  useEffect(() => {
+    getRengasByGoodForWeek(num)
+      .then((rengas) => {
+        setRengas(rengas);
+      })
+      .catch((error: any) => {
+        setErrorMessage(error.message);
+      });
+  }, []
+)
 
   return (
     <div className={`bg-white p-6 m-6 w-80 lg:w-96 ${color["card-border"]}`}>

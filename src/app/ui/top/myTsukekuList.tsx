@@ -1,25 +1,34 @@
-"use server";
+"use client";
 
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { auth } from "@/auth";
 import { Hokku } from "@/app/lib/definitions";
 import { getHokkusByUserId } from "@/app/lib/data";
 import Link from "next/link";
 import HokkuCard from "../tsukeku/hokkuCard";
 import { color } from "@/color";
+import { Session } from "next-auth";
 
-export default async function MyTsukekuList() {
-  const session = await auth();
-  var hokkus: Hokku[] = [];
-  var errorMessage: any | null = null;
-  if (!session || !session.user || !session.user.id) {
-    return <p>セッションの読み込みに失敗しました</p>;
-  }
-  try {
-    hokkus = await getHokkusByUserId(session.user.id);
-  } catch (error: any) {
-    errorMessage = error.message;
-  }
+export default function MyTsukekuList({session}: {session: Session}) {
+  // マイ付句リストを表示
+  const [hokkus, setHokkus] = useState<Hokku[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  // ユーザーIDで付句を取得
+  useEffect(() => {
+    getHokkusByUserId(session?.user?.id as string)
+      .then((hokkus) => {
+        setHokkus(hokkus);
+      })
+      .catch((error: any) => {
+        // エラー発生時はエラーメッセージを表示
+        setErrorMessage(error.message);
+      });
+  }, []);
+  // try {
+  //   hokkus = await getHokkusByUserId(session.user.id);
+  // } catch (error: any) {
+  //   errorMessage = error.message;
+  // }
 
   return (
     <div className={`md:w-2010 bg-white p-6 ${color["card-border"]}`}>

@@ -10,7 +10,7 @@ import { loginSchema } from "@/app/lib/schema";
 export default function LoginForm() {
   const router = useRouter();
   var status: status;
-  const {register, handleSubmit, formState, setValue} = useForm<loginSchema>({
+  const {register, handleSubmit, formState} = useForm<loginSchema>({
     mode: "onChange"
   })
   const onSubmit: SubmitHandler<loginSchema> = async (data: loginSchema) => {

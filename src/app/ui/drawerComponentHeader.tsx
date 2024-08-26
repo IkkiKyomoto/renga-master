@@ -10,12 +10,21 @@ import { spStyle } from "./headerListStyle";
 import { LoginButton } from "@/app/ui/buttons/loginButton";
 import { RegisterButton } from "@/app/ui/buttons/registerButton";
 import { LogoutButton } from "@/app/ui/buttons/logoutButton";
+import { toast } from "react-toastify";
+import { set } from "node_modules/cypress/types/lodash";
 
 export default function DrawerComponentHeader({
   session,
 }: {
   session: Session | null;
 }) {
+  function handleUnauthorizedLinkClick() {
+    if (!session) {
+      toast.info("ログインしてください");
+    } else {
+      setOpen(false);
+    }
+  }
   const { open, setOpen } = useToggleDrawer();
   const drawerWidth = 240;
   return (
@@ -58,7 +67,7 @@ export default function DrawerComponentHeader({
           <li className={` ${spStyle.li}`}>
             <Link
               onClick={() => {
-                setOpen(false);
+                handleUnauthorizedLinkClick()
               }}
               href="/hokku"
             >
@@ -68,7 +77,7 @@ export default function DrawerComponentHeader({
           <li className={` ${spStyle.li}`}>
             <Link
               onClick={() => {
-                setOpen(false);
+                handleUnauthorizedLinkClick()
               }}
               href="/tsukeku"
             >
@@ -78,7 +87,7 @@ export default function DrawerComponentHeader({
           <li className={` ${spStyle.li}`}>
             <Link
               onClick={() => {
-                setOpen(false);
+                handleUnauthorizedLinkClick()
               }}
               href={`/my-page/${session?.user?.id}`}
             >

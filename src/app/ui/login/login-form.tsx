@@ -1,25 +1,22 @@
 "use client";
-//import { useState } from "react";
 
 import { authenticate } from "@/app/lib/userActions";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { status } from "@/app/lib/definitions";
-//import { useRouter } from "next/navigation";
+import {useForm, SubmitHandler} from "react-hook-form";
+import { loginSchema } from "@/app/lib/schema";
 
 export default function LoginForm() {
-  //const router = useRouter();
-  // const searchParams = useSearchParams();
-  // const callbackUrl = searchParams.get("callbackUrl") || "/profile";
-  //const [errorMessage, setErrorMessage] = useState<string | undefined>();
   const router = useRouter();
   var status: status;
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    event.currentTarget.submitButton.disabled = true;
-    const form = event.currentTarget;
-    const email = form.email.value;
-    const password = form.password.value;
+  const {register, handleSubmit, formState, setValue} = useForm<loginSchema>({
+    mode: "onChange"
+  })
+  const onSubmit: SubmitHandler<loginSchema> = async (data: loginSchema) => {
+
+    const email = data.email
+    const password = data.password
     try {
       status = await authenticate(email, password);
       if (status === "success") {
@@ -32,63 +29,45 @@ export default function LoginForm() {
         toast.error("ログインに失敗しました");
       }
     } catch (error: any) {
-      form.submitButton.disabled = false;
-      // console.log('error', error.type)
-      // if (error.message === "メールアドレスが認証されていません") {
-      //   toast.warning("メールアドレスが認証されていません");
-      //   isEmailNotVerified = true;
-      // } else {
       toast.error("ログインに失敗しました");
-      // }
     }
-    // if (isEmailNotVerified) {
-    //   await sendVerificationEmail(form.email.value);
-    //   router.push("/login/not-verified?email=" + form.email.value);
-    // }
   }
   return (
-    // <div className="flex justify-center align-center">
-    //   <form onSubmit={handleSubmit}>
-    //     <label htmlFor="email">メールアドレス</label>
-    //     <input type="email" name="email" id="email" />
-    //     <label htmlFor="password">パスワード</label>
-    //     <input type="password" name="password" id="password" />
-    //     <button type="submit">ログイン</button>
-    //     {/* <button onClick={() => signIn('google', {callbackUrl})}>Google</button> */}
-    //   </form>
-    //   {/* {errorMessage && <p>{errorMessage}</p>} */}
-    // </div>
     <div className="flex justify-center">
-      <form onSubmit={handleSubmit} className="w-full max-w-md bg-white p-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md bg-white p-6">
         <label htmlFor="email" className="block text-base font-bold mb-2">
           メールアドレス
         </label>
         <input
           type="email"
-          name="email"
           id="email"
+          {...register("email", { required: "メールアドレスを入力してください" })}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
         />
+        {formState.errors.email && (
+          <p className="text-red-500 text-xs italic mb-3">{formState.errors.email.message}</p>
+        )}
         <label htmlFor="password" className="block text-base font-bold mb-2">
           パスワード
         </label>
         <input
           type="password"
-          name="password"
           id="password"
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight focus:outline-none focus:shadow-outline"
+          {...register("password", { required: "パスワードを入力してください" })}
         />
+        {formState.errors.password && (
+          <p className="text-red-500 text-xs italic mb-3">{formState.errors.password.message}</p>
+        )}
         <button
           name="submitButton"
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+          disabled={!formState.isValid}
         >
           ログイン
         </button>
-        {/* <button onClick={() => signIn('google', {callbackUrl})} className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Google</button> */}
       </form>
-
-      {/* {errorMessage && <p className="text-red-500 text-xs italic">{errorMessage}</p>} */}
     </div>
   );
 }

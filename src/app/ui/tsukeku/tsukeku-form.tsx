@@ -42,7 +42,7 @@ export default function TsukekuForm({ session }: { session: Session | null }) {
     }
   }
   return (
-    <div className="flex justify-center items-center ">
+    <div className="flex justify-center items-center w-4/5">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-lg bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"

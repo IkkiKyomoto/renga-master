@@ -9,6 +9,7 @@ export default defineConfig({
     },
   },
 
+  env: {'password': '11337700', 'email': 'kazu06851@gmail.com', "tsukekuEmail": "yixiqiaoben011@gmail.com", "tsukekuPassword": "11337700"},
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here

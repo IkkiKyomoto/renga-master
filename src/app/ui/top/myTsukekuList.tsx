@@ -47,7 +47,7 @@ export default async function MyTsukekuList({
       <ul className="flex flex-raw gap-6 grid grid-cols-4 md:grid-cols-6  lg:grid-cols-12">
         {hokkus.map((hokku, i) => {
           return (
-            <li key={i}>
+            <li key={i} className="myHokku-card">
               <Link href={`/posted-tsukeku/${hokku.id}`}>
                 <div className="relative top--2 text-xl text-red-600 z-10">
                   {hokku.tsukeku?.length}

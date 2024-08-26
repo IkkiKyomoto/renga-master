@@ -42,7 +42,7 @@ export default function RengaCompleteForm({
   }
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12">
+      <div className="flex grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12 tsukeku-card">
         {tsukekus.map((tsukeku, i) => {
           return (
             <div

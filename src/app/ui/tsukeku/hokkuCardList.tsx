@@ -53,7 +53,7 @@ export default async function HokkuCardList() {
             href = `/tsukeku/${hokku.id}/create?ikku=${hokku.ikku}&niku=${hokku.niku}&sanku=${hokku.sanku}&description=${hokku.description}`;
           }
           return (
-            <li key={i}>
+            <li key={i} className="hokku-card">
               <Link href={href}>
                 <Suspense fallback={<p>ロード中</p>}>
                   <HokkuCard

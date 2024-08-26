@@ -11,6 +11,10 @@ export default function PasswordResetForm() {
     const form = event.currentTarget;
     form.submitButton.disabled = true;
     const email = form.email.value;
+    if (!email) {
+      toast.error("メールアドレスを入力してください")
+      return
+    }
     try {
       const isUser = await confirmUser(email)
       if (!isUser) {
